@@ -55,3 +55,7 @@ remote func network_init(security_token):
 	
 	#self_instance.position = self_info.position
 	#self_instance.show()
+	
+remote func login_success(user_characters):
+	#Build character selection screen
+	pass

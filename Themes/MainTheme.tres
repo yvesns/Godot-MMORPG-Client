@@ -44,5 +44,6 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = ExtResource( 1 )
 Button/styles/pressed = ExtResource( 1 )
-_sections_unfolded = [ "Button", "Button/styles" ]
+PanelContainer/styles/panel = null
+_sections_unfolded = [ "Button", "Button/styles", "PanelContainer", "PanelContainer/styles" ]
 
