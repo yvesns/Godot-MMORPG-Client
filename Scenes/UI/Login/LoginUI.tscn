@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/Images/UI/Title.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/UI/Login/LoginUI.gd" type="Script" id=2]
 [ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Scenes/UI/Login/LoginPrompt.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Data/Music/Payback.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/UI/Login/RegisterPrompt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Data/Music/Payback.ogg" type="AudioStream" id=6]
 
-[node name="LoginUI" type="TextureRect" index="0"]
+[node name="LoginUI" type="TextureRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -136,9 +137,18 @@ margin_right = 121.0
 margin_bottom = 98.0
 _sections_unfolded = [ "Theme", "Visibility" ]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+[node name="RegisterPrompt" parent="." index="2" instance=ExtResource( 5 )]
 
-stream = ExtResource( 5 )
+visible = false
+margin_left = 434.0
+margin_top = 204.0
+margin_right = 607.0
+margin_bottom = 366.0
+_sections_unfolded = [ "Theme", "Visibility" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 6 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false

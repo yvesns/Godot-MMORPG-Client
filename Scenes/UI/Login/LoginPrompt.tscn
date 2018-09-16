@@ -300,4 +300,6 @@ _sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonsContainer/LoginButton" to="." method="_on_LoginButton_button_up"]
 
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonsContainer/RegisterButton" to="." method="_on_RegisterButton_button_up"]
+
 

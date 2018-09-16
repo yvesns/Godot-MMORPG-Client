@@ -3,25 +3,30 @@ extends Control
 var user
 var password
 var email
-var email_regex = Regex.new()
+var email_regex = RegEx.new()
 var is_password_valid = false
 var is_email_valid = false
+var password_mismatch
+var invalid_email
 
 func _ready():
 	email_regex.compile(".*@.*\\..*")
+	
+	password_mismatch = preload("res://Scenes/UI/Login/ErrorMessage.tscn").instance()
+	password_mismatch.find_node("Label").text = "Password mismatch"
+	password_mismatch.set_name("PasswordMismatch")
+	
+	invalid_email = preload("res://Scenes/UI/Login/ErrorMessage.tscn").instance()
+	invalid_email.find_node("Label").text = "Invalid email"
+	invalid_email.set_name("InvalidEmail")
 
 func _on_CloseButton_button_up():
 	visible = false
-
-func _on_LoginButton_button_up():
-	#get_tree().change_scene("res://Scenes/Maps/TestMap.tscn")
-	Main.connect_to_server()
 
 func _on_RegisterButton_button_up():
 	if (!is_password_valid ||
 		!is_email_valid):
 		return
-	pass
 
 func _on_AccountEdit_text_changed(new_text):
 	user = new_text
@@ -32,17 +37,33 @@ func _on_PasswordEdit_text_changed(new_text):
 func _on_PassConfirmEdit_text_changed(new_text):
 	if password == new_text:
 		is_password_valid = true
+		remove_password_mismatch_message()
 	else:
 		show_password_mismatch_message()
 
 func _on_EmailEdit_text_changed(new_text):
 	if email_regex.search(new_text) != null:
 		is_email_valid = true
+		remove_invalid_email_message()
 	else:
 		show_invalid_email_message()
 		
 func show_password_mismatch_message():
-	pass
+	if find_node(password_mismatch.name) == null:
+		get_node("MainContainer").add_child(password_mismatch)
 	
 func show_invalid_email_message():
-	pass
+	if find_node(invalid_email.name) == null:
+		get_node("MainContainer").add_child(invalid_email)
+		
+func remove_password_mismatch_message():
+	var node = find_node(password_mismatch.name)
+	
+	if node != null:
+		node.queue_free()
+	
+func remove_invalid_email_message():
+	var node = find_node(invalid_email.name)
+	
+	if node != null:
+		node.queue_free()
