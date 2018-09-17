@@ -32,7 +32,15 @@ func _on_AccountEdit_text_changed(new_text):
 	user = new_text
 
 func _on_PasswordEdit_text_changed(new_text):
+	var password_confirm = find_node("PassConfirmEdit").text
+	
 	password = new_text
+	
+	if password == password_confirm:
+		is_password_valid = true
+		remove_password_mismatch_message()
+	else:
+		show_password_mismatch_message()
 
 func _on_PassConfirmEdit_text_changed(new_text):
 	if password == new_text:
@@ -51,19 +59,23 @@ func _on_EmailEdit_text_changed(new_text):
 func show_password_mismatch_message():
 	if find_node(password_mismatch.name) == null:
 		get_node("MainContainer").add_child(password_mismatch)
+		password_mismatch.set_owner(get_node("MainContainer"))
 	
 func show_invalid_email_message():
 	if find_node(invalid_email.name) == null:
 		get_node("MainContainer").add_child(invalid_email)
+		invalid_email.set_owner(get_node("MainContainer"))
 		
 func remove_password_mismatch_message():
 	var node = find_node(password_mismatch.name)
 	
 	if node != null:
-		node.queue_free()
-	
+		#node.queue_free()
+		get_node("MainContainer").remove_child(password_mismatch)
+		
 func remove_invalid_email_message():
 	var node = find_node(invalid_email.name)
 	
 	if node != null:
-		node.queue_free()
+		#node.queue_free()
+		get_node("MainContainer").remove_child(invalid_email)
