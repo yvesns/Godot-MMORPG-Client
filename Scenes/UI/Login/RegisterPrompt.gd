@@ -10,7 +10,7 @@ var password_mismatch
 var invalid_email
 
 func _ready():
-	email_regex.compile(".*@.*\\..*")
+	email_regex.compile("\\w.*@\\w.*\\.\\w.*")
 	
 	password_mismatch = preload("res://Scenes/UI/Login/ErrorMessage.tscn").instance()
 	password_mismatch.find_node("Label").text = "Password mismatch"
@@ -27,6 +27,9 @@ func _on_RegisterButton_button_up():
 	if (!is_password_valid ||
 		!is_email_valid):
 		return
+	
+	if !Network.register(user, password, email):
+		pass
 
 func _on_AccountEdit_text_changed(new_text):
 	user = new_text

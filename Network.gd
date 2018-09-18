@@ -34,12 +34,15 @@ func _connection_failure():
 func _player_connected(id):
 	print("A player has connected")
 	
+func register(user, password, email):
+	return rpc_id(SERVER_ID, "register", user, password, email)
+	
 remote func network_init(security_token):
 	login_security_token = security_token
 	id = get_tree().get_network_unique_id()
 	
 	if id > 1:
-		rpc_id(SERVER_ID, "login", id ,user, password.hash(), security_token)
+		rpc_id(SERVER_ID, "login", id, user, password.hash(), security_token)
 	
 	#Load map
 	#Initialize self on map
