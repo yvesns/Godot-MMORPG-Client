@@ -28,8 +28,9 @@ func _on_RegisterButton_button_up():
 		!is_email_valid):
 		return
 	
-	if !Network.register(user, password, email):
-		pass
+	var result = Network.register(user, password, email)
+	
+	print(result)
 
 func _on_AccountEdit_text_changed(new_text):
 	user = new_text

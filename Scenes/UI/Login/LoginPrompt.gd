@@ -8,7 +8,7 @@ func _on_CloseButton_button_up():
 
 func _on_LoginButton_button_up():
 	#get_tree().change_scene("res://Scenes/Maps/TestMap.tscn")
-	Main.connect_to_server()
+	Network.login()
 
 func _on_RegisterButton_button_up():
 	visible = false

@@ -7,8 +7,6 @@ const SERVER_ID = 1
 var peer
 var self_info
 var self_instance
-var user
-var password
 var id
 var login_security_token
 
@@ -18,8 +16,6 @@ func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	
 func connect_to_server(user, password):
-	user = user
-	password = password
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_client(SERVER_IP, SERVER_PORT)
 	get_tree().set_network_peer(peer)
@@ -41,9 +37,6 @@ remote func network_init(security_token):
 	login_security_token = security_token
 	id = get_tree().get_network_unique_id()
 	
-	if id > 1:
-		rpc_id(SERVER_ID, "login", id, user, password.hash(), security_token)
-	
 	#Load map
 	#Initialize self on map
 	
@@ -58,6 +51,10 @@ remote func network_init(security_token):
 	
 	#self_instance.position = self_info.position
 	#self_instance.show()
+	
+func login(user, password):
+	if id > 1:
+		rpc_id(SERVER_ID, "login", id, user, password.hash(), security_token)
 	
 remote func login_success(user_characters):
 	#Build character selection screen
