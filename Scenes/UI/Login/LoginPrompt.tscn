@@ -4,7 +4,7 @@
 [ext_resource path="res://Data/Images/UI/Login prompt-alt.png" type="Texture" id=2]
 [ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=3]
 
-[node name="LoginPrompt" type="Control"]
+[node name="LoginPrompt" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -297,6 +297,10 @@ align = 1
 _sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [connection signal="button_up" from="CenterContainer/VBoxContainer/HBoxContainer2/HBoxContainer/CloseButton" to="." method="_on_CloseButton_button_up"]
+
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/AccountEdit" to="." method="_on_AccountEdit_text_changed"]
+
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/PasswordEdit" to="." method="_on_PasswordEdit_text_changed"]
 
 [connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonsContainer/LoginButton" to="." method="_on_LoginButton_button_up"]
 
