@@ -2,23 +2,20 @@ extends Control
 
 var account = ""
 var password = ""
-var connecting = false
-var login_timeout
 
 func _ready():
-	login_timeout = Timer.new()
-	login_timeout.wait_time = 255
-	login_timeout.connect("timeout", self, "_on_login_timeout")
-	
 	Network.connect_network_connection_signal(self, "_on_connection_established")
+	Network.connect_network_connection_timout_signal(self, "_on_connection_timeout")
 
 func _on_CloseButton_button_up():
 	visible = false
 
 func _on_LoginButton_button_up():
-	#get_tree().change_scene("res://Scenes/Maps/TestMap.tscn")
+	#TODO: check if some client or server side validation is needed to avoid attempts
+	#at logging in with the same account multiple times in case that the client is modified
+	#to avoid the next verifications.
 	
-	if connecting:
+	if Network.connecting:
 		return
 	
 	if Network.id > 1:
@@ -43,7 +40,7 @@ func _on_PasswordEdit_text_changed(new_text):
 
 func _on_connection_established():
 	Network.login(account, password)
-	login_timeout.stop()
 	
-func _on_login_timeout():
-	connecting = false
+func _on_connection_timeout():
+	#Show a error message
+	pass

@@ -19,6 +19,8 @@ func _ready():
 	invalid_email = preload("res://Scenes/UI/Login/ErrorMessage.tscn").instance()
 	invalid_email.find_node("Label").text = "Invalid email"
 	invalid_email.set_name("InvalidEmail")
+	
+	Network.connect_network_connection_signal(self, "_on_connection_established")
 
 func _on_CloseButton_button_up():
 	visible = false
@@ -59,6 +61,9 @@ func _on_EmailEdit_text_changed(new_text):
 		remove_invalid_email_message()
 	else:
 		show_invalid_email_message()
+		
+func _on_connection_established():
+	pass
 		
 func show_password_mismatch_message():
 	if find_node(password_mismatch.name) == null:

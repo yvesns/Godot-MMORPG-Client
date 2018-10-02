@@ -11,13 +11,21 @@ var self_info
 var self_instance
 var id = -1
 var login_security_token
+var connecting = false
+var connection_timeout
 
 func _ready():
+	connection_timeout = Timer.new()
+	connection_timeout.wait_time = 255
+	
 	get_tree().connect("connected_to_server", self, "_connection_success")
 	get_tree().connect("connection_failed", self, "_connection_failure")
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	
 func connect_to_server():
+	connecting = true
+	connection_timeout.start()
+	
 	peer = NetworkedMultiplayerENet.new()
 	peer.create_client(SERVER_IP, SERVER_PORT)
 	get_tree().set_network_peer(peer)
@@ -34,7 +42,7 @@ func _player_connected(id):
 	
 func login(user, password):
 	if id > 1:
-		rpc_id(SERVER_ID, "login", id, user, password.hash(), login_security_token)
+		rpc_id(SERVER_ID, "login", id, user, str(password.hash()), login_security_token)
 	
 func register(user, password, email):
 	return rpc_id(SERVER_ID, "register", user, password, email)
@@ -42,9 +50,15 @@ func register(user, password, email):
 func connect_network_connection_signal(node, method_name):
 	connect("connection_established", node, method_name)
 	
+func connect_network_connection_timout_signal(node, method_name):
+	connection_timeout.connect("timeout", node, method_name)
+	
 remote func network_init(security_token):
 	login_security_token = security_token
 	id = get_tree().get_network_unique_id()
+	
+	connection_timeout.stop()
+	connecting = false
 	
 	emit_signal("connection_established")
 	
@@ -65,4 +79,8 @@ remote func network_init(security_token):
 	
 remote func login_success(user_characters):
 	#Build character selection screen
+	pass
+	
+remote func login_failure():
+	#Show a error message
 	pass
