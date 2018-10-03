@@ -6,6 +6,7 @@ var email
 var email_regex = RegEx.new()
 var is_password_valid = false
 var is_email_valid = false
+var registering = false
 var password_mismatch
 var invalid_email
 
@@ -21,18 +22,24 @@ func _ready():
 	invalid_email.set_name("InvalidEmail")
 	
 	Network.connect_network_connection_signal(self, "_on_connection_established")
+	Network.connect_network_connection_timout_signal(self, "_on_connection_timeout")
 
 func _on_CloseButton_button_up():
 	visible = false
 
 func _on_RegisterButton_button_up():
 	if (!is_password_valid ||
-		!is_email_valid):
+		!is_email_valid ||
+		Network.connecting):
 		return
-	
-	var result = Network.register(user, password, email)
-	
-	print(result)
+		
+	if Network.id > 1:
+		print(Network.register(user, password, email))
+		return
+		
+	registering = true
+		
+	Network.connect_to_server()
 
 func _on_AccountEdit_text_changed(new_text):
 	user = new_text
@@ -56,14 +63,21 @@ func _on_PassConfirmEdit_text_changed(new_text):
 		show_password_mismatch_message()
 
 func _on_EmailEdit_text_changed(new_text):
-	if email_regex.search(new_text) != null:
+	email = new_text
+	
+	if email_regex.search(email) != null:
 		is_email_valid = true
 		remove_invalid_email_message()
 	else:
 		show_invalid_email_message()
 		
 func _on_connection_established():
-	pass
+	if registering:
+		print(Network.register(user, password, email))
+		registering = false
+		
+func _on_connection_timeout():
+	registering = false
 		
 func show_password_mismatch_message():
 	if find_node(password_mismatch.name) == null:

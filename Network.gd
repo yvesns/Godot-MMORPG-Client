@@ -40,13 +40,6 @@ func _connection_failure():
 func _player_connected(id):
 	print("A player has connected")
 	
-func login(user, password):
-	if id > 1:
-		rpc_id(SERVER_ID, "login", id, user, str(password.hash()), login_security_token)
-	
-func register(user, password, email):
-	return rpc_id(SERVER_ID, "register", user, password, email)
-	
 func connect_network_connection_signal(node, method_name):
 	connect("connection_established", node, method_name)
 	
@@ -54,6 +47,9 @@ func connect_network_connection_timout_signal(node, method_name):
 	connection_timeout.connect("timeout", node, method_name)
 	
 remote func network_init(security_token):
+	if id > 1:
+		return
+	
 	login_security_token = security_token
 	id = get_tree().get_network_unique_id()
 	
@@ -77,6 +73,14 @@ remote func network_init(security_token):
 	#self_instance.position = self_info.position
 	#self_instance.show()
 	
+#########
+# Login #
+#########
+
+func login(user, password):
+	if id > 1:
+		rpc_id(SERVER_ID, "login", id, user, str(password.hash()), login_security_token)
+	
 remote func login_success(user_characters):
 	#Build character selection screen
 	pass
@@ -84,3 +88,16 @@ remote func login_success(user_characters):
 remote func login_failure():
 	#Show a error message
 	pass
+	
+################
+# Registration #
+################
+
+func register(user, password, email):
+	return rpc_id(SERVER_ID, "register", id, user, str(password.hash()), email, login_security_token)
+	
+remote func registration_success(message):
+	print(message)
+	
+remote func registration_failure(message):
+	print(message)

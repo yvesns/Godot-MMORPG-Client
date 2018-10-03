@@ -2,6 +2,7 @@ extends Control
 
 var account = ""
 var password = ""
+var logging_in = false
 
 func _ready():
 	Network.connect_network_connection_signal(self, "_on_connection_established")
@@ -21,10 +22,8 @@ func _on_LoginButton_button_up():
 	if Network.id > 1:
 		Network.login(account, password)
 		return
-	
-	connecting = true
-	
-	login_timeout.start()
+		
+	logging_in = true
 	
 	Network.connect_to_server()
 
@@ -39,8 +38,10 @@ func _on_PasswordEdit_text_changed(new_text):
 	password = new_text
 
 func _on_connection_established():
-	Network.login(account, password)
+	if logging_in:
+		Network.login(account, password)
+		logging_in = false
 	
 func _on_connection_timeout():
 	#Show a error message
-	pass
+	logging_in = false
