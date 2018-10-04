@@ -53,6 +53,7 @@ func _on_PasswordEdit_text_changed(new_text):
 		is_password_valid = true
 		remove_password_mismatch_message()
 	else:
+		is_password_valid = false
 		show_password_mismatch_message()
 
 func _on_PassConfirmEdit_text_changed(new_text):
@@ -60,6 +61,7 @@ func _on_PassConfirmEdit_text_changed(new_text):
 		is_password_valid = true
 		remove_password_mismatch_message()
 	else:
+		is_password_valid = false
 		show_password_mismatch_message()
 
 func _on_EmailEdit_text_changed(new_text):
@@ -69,6 +71,7 @@ func _on_EmailEdit_text_changed(new_text):
 		is_email_valid = true
 		remove_invalid_email_message()
 	else:
+		is_email_valid = false
 		show_invalid_email_message()
 		
 func _on_connection_established():

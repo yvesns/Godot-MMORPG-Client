@@ -10,4 +10,4 @@ func _on_ConnectButton_button_up():
 	if is_options_gui_open():
 		return
 	
-	get_node("LoginPrompt").visible = true
+	find_node("LoginPrompt").visible = true

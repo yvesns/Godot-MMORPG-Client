@@ -1,6 +1,8 @@
 extends Node
 
 signal connection_established
+signal registration_success(message)
+signal registration_failure(message)
 
 const SERVER_IP = "127.0.0.1"
 const SERVER_PORT = 9292
@@ -40,12 +42,6 @@ func _connection_failure():
 func _player_connected(id):
 	print("A player has connected")
 	
-func connect_network_connection_signal(node, method_name):
-	connect("connection_established", node, method_name)
-	
-func connect_network_connection_timout_signal(node, method_name):
-	connection_timeout.connect("timeout", node, method_name)
-	
 remote func network_init(security_token):
 	if id > 1:
 		return
@@ -73,6 +69,22 @@ remote func network_init(security_token):
 	#self_instance.position = self_info.position
 	#self_instance.show()
 	
+#####################
+# Signal connectors #
+#####################
+	
+func connect_network_connection_signal(node, method_name):
+	connect("connection_established", node, method_name)
+	
+func connect_network_connection_timout_signal(node, method_name):
+	connection_timeout.connect("timeout", node, method_name)
+	
+func connect_registration_success_signal(node, method_name):
+	connect("registration_success", node, method_name)
+	
+func connect_registration_failure_signal(node, method_name):
+	connect("registration_failure", node, method_name)
+	
 #########
 # Login #
 #########
@@ -97,7 +109,7 @@ func register(user, password, email):
 	return rpc_id(SERVER_ID, "register", id, user, str(password.hash()), email, login_security_token)
 	
 remote func registration_success(message):
-	print(message)
+	emit_signal("registration_success", message)
 	
 remote func registration_failure(message):
-	print(message)
+	emit_signal("registration_failure", message)
