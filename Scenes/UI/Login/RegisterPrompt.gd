@@ -23,6 +23,8 @@ func _ready():
 	
 	Network.connect_network_connection_signal(self, "_on_connection_established")
 	Network.connect_network_connection_timout_signal(self, "_on_connection_timeout")
+	Network.connect_registration_success_signal(self, "_on_registration_result")
+	Network.connect_registration_failure_signal(self, "_on_registration_result")
 
 func _on_CloseButton_button_up():
 	visible = false
@@ -81,6 +83,9 @@ func _on_connection_established():
 		
 func _on_connection_timeout():
 	registering = false
+	
+func _on_registration_result(message):
+	hide()
 		
 func show_password_mismatch_message():
 	if find_node(password_mismatch.name) == null:

@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Data/Images/UI/Title.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/UI/Login/LoginUI.gd" type="Script" id=2]
 [ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Scenes/UI/Login/LoginPrompt.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/UI/Login/RegisterPrompt.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/UI/MessageDialog.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Data/Music/Payback.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/UI/Login/LoginPrompt.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/UI/Login/RegisterPrompt.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/UI/Login/RegisterPrompt.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/UI/MessageDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Data/Music/Payback.ogg" type="AudioStream" id=9]
 
-[node name="LoginUI" type="TextureRect" index="0"]
+[node name="LoginUI" type="TextureRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -125,7 +127,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Size Flags", "Theme" ]
 
-[node name="LoginPrompt" parent="." index="1" instance=ExtResource( 4 )]
+[node name="LoginPrompt" type="CenterContainer" parent="." index="1" instance=ExtResource( 4 )]
 
 visible = false
 anchor_left = 0.5
@@ -136,22 +138,46 @@ margin_left = -108.0
 margin_top = -67.0
 margin_right = 121.0
 margin_bottom = 98.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+script = ExtResource( 5 )
 _sections_unfolded = [ "Theme", "Visibility" ]
 
-[node name="RegisterPrompt" parent="." index="2" instance=ExtResource( 5 )]
+[node name="RegisterPrompt" type="CenterContainer" parent="." index="2" instance=ExtResource( 6 )]
 
 visible = false
-margin_left = 458.0
-margin_top = 209.0
-margin_right = 631.0
-margin_bottom = 371.0
-_sections_unfolded = [ "Theme", "Visibility" ]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -93.0
+margin_right = 88.0
+margin_bottom = 131.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+use_top_left = false
+script = ExtResource( 7 )
+_sections_unfolded = [ "Size Flags", "Theme", "Visibility" ]
 
-[node name="MessageDialog" parent="." index="3" instance=ExtResource( 6 )]
+[node name="MessageDialog" parent="." index="3" instance=ExtResource( 8 )]
+
+visible = false
+margin_right = 24.0
+margin_bottom = 32.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
 
-stream = ExtResource( 7 )
+stream = ExtResource( 9 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false

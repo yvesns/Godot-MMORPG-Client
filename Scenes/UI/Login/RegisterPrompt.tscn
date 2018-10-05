@@ -3,15 +3,15 @@
 [ext_resource path="res://Scenes/UI/Login/RegisterPrompt.gd" type="Script" id=1]
 [ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=2]
 
-[node name="RegisterPrompt" type="Control" index="0"]
+[node name="RegisterPrompt" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 49.0
-margin_right = 222.0
-margin_bottom = 162.0
+margin_right = 207.0
+margin_bottom = 232.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -19,7 +19,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Theme" ]
 
 [node name="MainContainer" type="VBoxContainer" parent="." index="0"]
 
@@ -27,8 +26,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 154.0
+margin_bottom = 224.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -36,6 +35,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="PanelContainer" type="PanelContainer" parent="MainContainer" index="0"]
 
@@ -331,7 +331,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="RegisterButton" type="Button" parent="MainContainer/PanelContainer/VBoxContainer/ButtonsContainer" index="0"]
 
