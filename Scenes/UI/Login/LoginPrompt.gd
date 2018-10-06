@@ -7,6 +7,8 @@ var logging_in = false
 func _ready():
 	Network.connect_network_connection_signal(self, "_on_connection_established")
 	Network.connect_network_connection_timout_signal(self, "_on_connection_timeout")
+	Network.connect_login_success_signal(self, "_on_login_success")
+	Network.connect_login_failure_signal(self, "_on_login_failure")
 
 func _on_CloseButton_button_up():
 	visible = false
@@ -45,3 +47,9 @@ func _on_connection_established():
 func _on_connection_timeout():
 	#Show a error message
 	logging_in = false
+	
+func _on_login_success(player_characters):
+	print(player_characters)
+	
+func _on_login_failure():
+	hide()

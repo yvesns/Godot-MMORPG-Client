@@ -1,6 +1,8 @@
 extends Node
 
 signal connection_established
+signal login_success(player_characters)
+signal login_failure
 signal registration_success(message)
 signal registration_failure(message)
 
@@ -79,6 +81,12 @@ func connect_network_connection_signal(node, method_name):
 func connect_network_connection_timout_signal(node, method_name):
 	connection_timeout.connect("timeout", node, method_name)
 	
+func connect_login_success_signal(node, method_name):
+	connect("login_success", node, method_name)
+	
+func connect_login_failure_signal(node, method_name):
+	connect("login_failure", node, method_name)
+	
 func connect_registration_success_signal(node, method_name):
 	connect("registration_success", node, method_name)
 	
@@ -91,22 +99,20 @@ func connect_registration_failure_signal(node, method_name):
 
 func login(user, password):
 	if id > 1:
-		rpc_id(SERVER_ID, "login", id, user, str(password.hash()), login_security_token)
+		rpc_id(SERVER_ID, "login", id, user, password.hash(), login_security_token)
 	
-remote func login_success(user_characters):
-	#Build character selection screen
-	pass
+remote func login_success(player_characters):
+	emit_signal("login_success", player_characters)
 	
 remote func login_failure():
-	#Show a error message
-	pass
+	emit_signal("login_failure")
 	
 ################
 # Registration #
 ################
 
 func register(user, password, email):
-	return rpc_id(SERVER_ID, "register", id, user, str(password.hash()), email, login_security_token)
+	return rpc_id(SERVER_ID, "register", id, user, password.hash(), email, login_security_token)
 	
 remote func registration_success(message):
 	emit_signal("registration_success", message)

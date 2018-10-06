@@ -36,7 +36,7 @@ func _on_RegisterButton_button_up():
 		return
 		
 	if Network.id > 1:
-		print(Network.register(user, password, email))
+		Network.register(user, password, email)
 		return
 		
 	registering = true
