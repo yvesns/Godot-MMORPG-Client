@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Network="*res://Network.gd"
+Global="*res://Global.gd"
 
 [rendering]
 
