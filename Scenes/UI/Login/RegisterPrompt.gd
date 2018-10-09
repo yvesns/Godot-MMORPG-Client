@@ -101,12 +101,10 @@ func remove_password_mismatch_message():
 	var node = find_node(password_mismatch.name)
 	
 	if node != null:
-		#node.queue_free()
 		get_node("MainContainer").remove_child(password_mismatch)
 		
 func remove_invalid_email_message():
 	var node = find_node(invalid_email.name)
 	
 	if node != null:
-		#node.queue_free()
 		get_node("MainContainer").remove_child(invalid_email)

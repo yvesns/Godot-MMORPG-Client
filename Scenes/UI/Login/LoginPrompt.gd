@@ -45,12 +45,12 @@ func _on_connection_established():
 		logging_in = false
 	
 func _on_connection_timeout():
-	#Show a error message
 	logging_in = false
 	
 func _on_login_success(player_characters):
 	Global.scene_args = player_characters
-	get_tree().change_scene()
+	
+	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])
 	
 func _on_login_failure():
 	hide()
