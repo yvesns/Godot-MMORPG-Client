@@ -1,5 +1,7 @@
 extends CenterContainer
 
+signal character_selected(character)
+
 var character
 
 func _ready():
@@ -13,13 +15,14 @@ func init(character):
 	find_node("TextureRect").texture = load(Global.paths["CharacterPlaceholder"])
 
 func _on_TextureRect_gui_input(ev):
-	#Handle character selected case if event is double click
-	
-	if (ev.type == InputEvent.MOUSE_BUTTON &&
-		ev.button_index == 1 &&
+	if (ev is InputEventMouseButton &&
+		ev.button_index == BUTTON_LEFT &&
 	    ev.is_pressed() && 
 		ev.doubleclick):
-			#Connect with this char
-			pass
-		
-	pass
+			if ev.doubleclick:
+				Network.connect_character(character)
+			else:
+				emit_signal("character_selected", character)
+				
+func connect_character_selected_signal(node, method_name):
+	connect("character_selected", node, method_name)

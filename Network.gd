@@ -1,8 +1,11 @@
 extends Node
 
 signal connection_established
+
 signal login_success(player_characters)
 signal login_failure
+signal character_connection_success
+
 signal registration_success(message)
 signal registration_failure(message)
 
@@ -26,6 +29,15 @@ func _ready():
 	get_tree().connect("connection_failed", self, "_connection_failure")
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	
+func _connection_success():
+	print("Connected to server")
+	
+func _connection_failure():
+	print("Connection failed")
+	
+func _player_connected(id):
+	print("A player has connected")
+	
 func connect_to_server():
 	connecting = true
 	connection_timeout.start()
@@ -35,14 +47,8 @@ func connect_to_server():
 	get_tree().set_network_peer(peer)
 	get_tree().set_meta("network_peer", peer)
 	
-func _connection_success():
-	print("Connected to server")
-	
-func _connection_failure():
-	print("Connection failed")
-	
-func _player_connected(id):
-	print("A player has connected")
+func connect_character(character):
+	rpc_id(SERVER_ID, "connect_character", id, login_security_token, character)
 	
 remote func network_init(security_token):
 	if id > 1:
@@ -87,6 +93,9 @@ func connect_login_success_signal(node, method_name):
 func connect_login_failure_signal(node, method_name):
 	connect("login_failure", node, method_name)
 	
+func connect_character_connection_success(node, method_name):
+	connect("character_connection_success", node, method_name)
+	
 func connect_registration_success_signal(node, method_name):
 	connect("registration_success", node, method_name)
 	
@@ -106,6 +115,9 @@ remote func login_success(player_characters):
 	
 remote func login_failure():
 	emit_signal("login_failure")
+	
+remote func character_connection_success():
+	emit_signal("character_connection_success")
 	
 ################
 # Registration #
