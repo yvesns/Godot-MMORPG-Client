@@ -3,7 +3,7 @@
 [ext_resource path="res://Data/Images/UI/Title.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/UI/CharacterSelection/CharacterSelection.gd" type="Script" id=2]
 
-[node name="CharacterSelection" type="TextureRect" index="0"]
+[node name="CharacterSelection" type="TextureRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -75,7 +75,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 _sections_unfolded = [ "Margin", "Size Flags" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/Characters" index="0"]
+[node name="CharactersHBox" type="HBoxContainer" parent="MainContainer/VBoxContainer/Characters" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -94,56 +94,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
 _sections_unfolded = [ "Rect" ]
-
-[node name="Character1" type="PanelContainer" parent="MainContainer/VBoxContainer/Characters/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 92.0
-margin_bottom = 162.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-_sections_unfolded = [ "Size Flags" ]
-
-[node name="Character2" type="PanelContainer" parent="MainContainer/VBoxContainer/Characters/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 96.0
-margin_right = 188.0
-margin_bottom = 162.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-_sections_unfolded = [ "Size Flags" ]
-
-[node name="Character3" type="PanelContainer" parent="MainContainer/VBoxContainer/Characters/HBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 192.0
-margin_right = 286.0
-margin_bottom = 162.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-_sections_unfolded = [ "Size Flags" ]
 
 [node name="Buttons" type="HBoxContainer" parent="MainContainer/VBoxContainer" index="1"]
 
