@@ -1,5 +1,9 @@
 extends Node
 
+###########
+# Signals #
+###########
+
 signal connection_established
 
 signal login_success(player_characters)
@@ -9,9 +13,20 @@ signal character_connection_success
 signal registration_success(message)
 signal registration_failure(message)
 
+signal character_creation_success(characters)
+signal character_creation_failure(message)
+
+#############
+# Constants #
+#############
+
 const SERVER_IP = "127.0.0.1"
 const SERVER_PORT = 9292
 const SERVER_ID = 1
+
+#############
+# Variables #
+#############
 
 var peer
 var self_info
@@ -102,6 +117,12 @@ func connect_registration_success_signal(node, method_name):
 func connect_registration_failure_signal(node, method_name):
 	connect("registration_failure", node, method_name)
 	
+func connect_character_creation_success_signal(node, method_name):
+	connect("character_creation_success", node, method_name)
+	
+func connect_character_creation_failure_signal(node, method_name):
+	connect("character_creation_failure", node, method_name)
+	
 #########
 # Login #
 #########
@@ -131,3 +152,13 @@ remote func registration_success(message):
 	
 remote func registration_failure(message):
 	emit_signal("registration_failure", message)
+	
+######################
+# Character creation #
+######################
+
+remote func character_creation_success(characters):
+	emit_signal("character_creation_success", characters)
+	
+remote func character_creation_failure(message):
+	emit_signal("character_creation_failure", message)
