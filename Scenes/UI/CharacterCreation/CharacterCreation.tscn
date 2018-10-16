@@ -380,4 +380,6 @@ _sections_unfolded = [ "Size Flags" ]
 
 [connection signal="button_up" from="MainContainer/CenterContainer/VBoxContainer/ButtonContainer/Create" to="." method="_on_Create_button_up"]
 
+[connection signal="button_up" from="MainContainer/CenterContainer/VBoxContainer/ButtonContainer/Cancel" to="." method="_on_Cancel_button_up"]
+
 

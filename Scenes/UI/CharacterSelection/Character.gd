@@ -19,9 +19,11 @@ func _on_TextureRect_gui_input(ev):
 		ev.button_index == BUTTON_LEFT &&
 	    ev.is_pressed()):
 			if ev.doubleclick:
-				Network.connect_character(character)
+				if character != null:
+					Network.connect_character(character)
+				else:
+					get_tree().change_scene(Global.paths["CharacterCreation.tscn"])
 			else:
-				print("Emmiting signal")
 				emit_signal("character_selected", character)
 				
 func connect_character_selected_signal(node, method_name):

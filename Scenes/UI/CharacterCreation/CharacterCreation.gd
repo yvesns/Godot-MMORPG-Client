@@ -16,6 +16,11 @@ var race_button_group = ButtonGroup.new()
 func _ready():
 	find_node("HumanCheckbox").group = race_button_group
 	find_node("VampireCheckbox").group = race_button_group
+	
+	character_info.character_race = "Human"
+	
+	Network.connect_character_creation_success_signal(self, "_on_character_creation_success")
+	Network.connect_character_creation_failure_signal(self, "_on_character_creation_failure")
 
 func _on_LineEdit_text_changed(new_name):
 	character_info.character_name = new_name
@@ -31,6 +36,17 @@ func _on_Create_button_up():
 	    character_info.character_race == ""):
 		return
 	
-	character_info.character_class += character_race
+	character_info.character_class += character_info.character_race
 	
+	print("Sending request to network")
 	Network.create_character(character_info)
+
+func _on_Cancel_button_up():
+	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])
+	
+func _on_character_creation_success(characters):
+	Global.scene_args = characters
+	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])
+	
+func _on_character_creation_failure(message):
+	print(message)

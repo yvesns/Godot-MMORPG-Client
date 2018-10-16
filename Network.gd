@@ -157,6 +157,9 @@ remote func registration_failure(message):
 # Character creation #
 ######################
 
+func create_character(character):
+	rpc_id(SERVER_ID, "create_character", id, login_security_token, character)
+
 remote func character_creation_success(characters):
 	emit_signal("character_creation_success", characters)
 	

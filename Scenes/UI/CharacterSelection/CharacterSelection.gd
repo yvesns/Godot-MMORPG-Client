@@ -37,3 +37,5 @@ func _on_character_connection_success():
 func _on_Create_button_up():
 	if characters.size() >= 3:
 		return
+		
+	get_tree().change_scene(Global.paths["CharacterCreation.tscn"])

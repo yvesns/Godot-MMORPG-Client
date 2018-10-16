@@ -5,6 +5,7 @@ var paths = {}
 
 func _ready():
 	paths["LoginUI.tscn"] = "res://Scenes/UI/Login/LoginUI.tscn"
+	paths["CharacterCreation.tscn"] = "res://Scenes/UI/CharacterCreation/CharacterCreation.tscn"
 	paths["CharacterSelection.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSelection.tscn"
 	paths["Character.tscn"] = "res://Scenes/UI/CharacterSelection/Character.tscn"
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
