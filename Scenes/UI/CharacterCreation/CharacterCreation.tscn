@@ -3,7 +3,7 @@
 [ext_resource path="res://Data/Images/UI/Title.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/UI/CharacterCreation/CharacterCreation.gd" type="Script" id=2]
 
-[node name="CharacterCreation" type="TextureRect" index="0"]
+[node name="CharacterCreation" type="TextureRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -27,6 +27,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

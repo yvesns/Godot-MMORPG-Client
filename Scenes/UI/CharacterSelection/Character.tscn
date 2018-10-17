@@ -19,7 +19,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Focus", "Grow Direction", "Size Flags", "Theme", "Visibility", "custom_styles" ]
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="0"]
 

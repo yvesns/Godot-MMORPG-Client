@@ -2,6 +2,7 @@ extends TextureRect
 
 var characters
 var selected_character = null
+var character_container = null
 var minimum_character_slots = 3
 
 func _ready():
@@ -20,11 +21,15 @@ func _ready():
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
 		
-func _on_character_selected(character):
+func _on_character_selected(character, character_container):
 	selected_character = character
+	
+	if self.character_container != null:
+		self.character_container.deselect()
+	
+	self.character_container = character_container
 
 func _on_GameStart_button_up():
-	print(selected_character)
 	if selected_character != null:
 		Network.connect_character(selected_character)
 
@@ -39,3 +44,6 @@ func _on_Create_button_up():
 		return
 		
 	get_tree().change_scene(Global.paths["CharacterCreation.tscn"])
+
+func _on_Delete_button_up():
+	pass # replace with function body

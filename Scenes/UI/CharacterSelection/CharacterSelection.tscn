@@ -119,8 +119,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 51.0
-margin_right = 134.0
+margin_left = 21.0
+margin_right = 104.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -143,8 +143,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 138.0
-margin_right = 191.0
+margin_left = 108.0
+margin_right = 161.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -161,14 +161,38 @@ text = "Create"
 flat = false
 align = 1
 
-[node name="Cancel" type="Button" parent="MainContainer/VBoxContainer/Buttons" index="2"]
+[node name="Delete" type="Button" parent="MainContainer/VBoxContainer/Buttons" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 195.0
-margin_right = 249.0
+margin_left = 165.0
+margin_right = 220.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Delete"
+flat = false
+align = 1
+
+[node name="Cancel" type="Button" parent="MainContainer/VBoxContainer/Buttons" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 224.0
+margin_right = 278.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -188,6 +212,8 @@ align = 1
 [connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/GameStart" to="." method="_on_GameStart_button_up"]
 
 [connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/Create" to="." method="_on_Create_button_up"]
+
+[connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/Delete" to="." method="_on_Delete_button_up"]
 
 [connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/Cancel" to="." method="_on_Cancel_button_up"]
 
