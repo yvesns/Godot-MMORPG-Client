@@ -20,6 +20,8 @@ func _ready():
 		find_node("CharactersHBox").add_child(character)
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
+	
+	find_node("Popup").popup_centered()
 		
 func _on_character_selected(character, character_container):
 	selected_character = character

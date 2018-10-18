@@ -21,9 +21,6 @@ func _ready():
 	
 	Network.connect_character_creation_success_signal(self, "_on_character_creation_success")
 	Network.connect_character_creation_failure_signal(self, "_on_character_creation_failure")
-	
-	find_node("AcceptDialog").show()
-	find_node("AcceptDialog").popup_exclusive = true
 
 func _on_LineEdit_text_changed(new_name):
 	character_info.character_name = new_name
