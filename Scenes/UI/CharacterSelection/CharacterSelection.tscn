@@ -212,8 +212,6 @@ align = 1
 
 [node name="Popup" parent="MainContainer" index="1" instance=ExtResource( 3 )]
 
-visible = false
-
 [connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/GameStart" to="." method="_on_GameStart_button_up"]
 
 [connection signal="button_up" from="MainContainer/VBoxContainer/Buttons/Create" to="." method="_on_Create_button_up"]
