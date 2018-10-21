@@ -20,8 +20,7 @@ func _ready():
 		find_node("CharactersHBox").add_child(character)
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
-	
-	find_node("Popup").popup_centered()
+	find_node("Popup").connect_delete_character_signal(self, "_on_character_delete")
 		
 func _on_character_selected(character, character_container):
 	selected_character = character
@@ -48,4 +47,12 @@ func _on_Create_button_up():
 	get_tree().change_scene(Global.paths["CharacterCreation.tscn"])
 
 func _on_Delete_button_up():
-	pass # replace with function body
+	if selected_character == null:
+		return
+	
+	var popup = find_node("Popup")
+	popup.set_character(selected_character)
+	popup.popup_centered()
+	
+func _on_character_delete():
+	pass
