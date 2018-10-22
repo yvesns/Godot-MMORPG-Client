@@ -5,9 +5,9 @@ var password = ""
 var logging_in = false
 
 func _ready():
-	Network.connect_network_connection_signal(self, "_on_connection_established")
-	Network.connect_network_connection_timout_signal(self, "_on_connection_timeout")
-	Network.connect_login_success_signal(self, "_on_login_success")
+	Network.connect_network_connection(self, "_on_connection_established")
+	Network.connect_network_connection_timout(self, "_on_connection_timeout")
+	Network.connect_login_success(self, "_on_login_success")
 
 func _on_CloseButton_button_up():
 	visible = false

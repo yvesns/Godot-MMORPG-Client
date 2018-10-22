@@ -12,10 +12,15 @@ func _ready():
 func set_character(character):
 	self.character = character
 	
-func build_mismatch_dialog():
+func build_mismatch_dialog(title, message):
 	var dialog = AcceptDialog.new()
 	
-func connect_delete_character_signal(node, method_name):
+	dialog.window_title = title
+	dialog.dialog_text = message
+	
+	return dialog
+	
+func connect_delete_character(node, method_name):
 	connect("delete_character", node, method_name)
 	
 func _on_TitleContainer_gui_input(event):
@@ -31,7 +36,7 @@ func _on_TitleContainer_gui_input(event):
 
 func _on_Confirm_button_up():
 	if character_name != character.get_name():
-		build_mismatch_dialog("Charater deletetion", "Name mismatch").popup_centered()
+		build_mismatch_dialog("Character deletion", "Name mismatch").popup_centered()
 		return
 		
 	emit_signal("delete_character", character)

@@ -6,7 +6,7 @@ var character_container = null
 var minimum_character_slots = 3
 
 func _ready():
-	var character_scene = load(Global.paths["Character.tscn"])
+	var character_scene = load(Global.paths["CharacterSlot.tscn"])
 	var character
 	characters = Global.scene_args
 	
@@ -20,7 +20,10 @@ func _ready():
 		find_node("CharactersHBox").add_child(character)
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
-	find_node("Popup").connect_delete_character_signal(self, "_on_character_delete")
+	Network.connect_character_deletion_success(self, "_on_character_deletion_success")
+	Network.connect_character_deletion_failure(self, "_on_character_deletion_failure")
+	
+	find_node("Popup").connect_delete_character(self, "_on_character_delete")
 		
 func _on_character_selected(character, character_container):
 	selected_character = character
@@ -54,5 +57,16 @@ func _on_Delete_button_up():
 	popup.set_character(selected_character)
 	popup.popup_centered()
 	
-func _on_character_delete():
-	pass
+func _on_character_delete(character):
+	Network.delete_character()
+	
+func _on_character_deletion_success():
+	find_node("CharactersHBox").remove_child(selected_character)
+
+func _on_character_deletion_failure(message):
+	var dialog = AcceptDialog.new()
+	
+	dialog.window_title = "Character deletion failed"
+	dialog.dialog_text = message
+	
+	dialog.popup_centered()

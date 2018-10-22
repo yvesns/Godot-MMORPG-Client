@@ -16,6 +16,9 @@ signal registration_failure(message)
 signal character_creation_success(characters)
 signal character_creation_failure(message)
 
+signal character_deletion_success
+signal character_deletion_failure(message)
+
 #############
 # Constants #
 #############
@@ -31,6 +34,8 @@ const SERVER_ID = 1
 var peer
 var self_info
 var self_instance
+var user
+var password
 var id = -1
 var login_security_token
 var connecting = false
@@ -96,32 +101,42 @@ remote func network_init(security_token):
 # Signal connectors #
 #####################
 	
-func connect_network_connection_signal(node, method_name):
+func connect_network_connection(node, method_name):
 	connect("connection_established", node, method_name)
 	
-func connect_network_connection_timout_signal(node, method_name):
+func connect_network_connection_timout(node, method_name):
 	connection_timeout.connect("timeout", node, method_name)
-	
-func connect_login_success_signal(node, method_name):
+
+# Login
+func connect_login_success(node, method_name):
 	connect("login_success", node, method_name)
 	
-func connect_login_failure_signal(node, method_name):
+func connect_login_failure(node, method_name):
 	connect("login_failure", node, method_name)
-	
+
 func connect_character_connection_success(node, method_name):
 	connect("character_connection_success", node, method_name)
 	
-func connect_registration_success_signal(node, method_name):
+# Registration
+func connect_registration_success(node, method_name):
 	connect("registration_success", node, method_name)
 	
-func connect_registration_failure_signal(node, method_name):
+func connect_registration_failure(node, method_name):
 	connect("registration_failure", node, method_name)
 	
-func connect_character_creation_success_signal(node, method_name):
+# Character creation
+func connect_character_creation_success(node, method_name):
 	connect("character_creation_success", node, method_name)
 	
-func connect_character_creation_failure_signal(node, method_name):
+func connect_character_creation_failure(node, method_name):
 	connect("character_creation_failure", node, method_name)
+	
+# Character deletion
+func connect_character_deletion_success(node, method_name):
+	connect("character_deletion_success", node, method_name)
+	
+func connect_character_deletion_failure(node, method_name):
+	connect("character_deletion_failure", node, method_name)
 	
 #########
 # Login #
@@ -129,6 +144,8 @@ func connect_character_creation_failure_signal(node, method_name):
 
 func login(user, password):
 	if id > 1:
+		self.user = user
+		self.password = password
 		rpc_id(SERVER_ID, "login", id, user, password.hash(), login_security_token)
 	
 remote func login_success(player_characters):
@@ -165,3 +182,16 @@ remote func character_creation_success(characters):
 	
 remote func character_creation_failure(message):
 	emit_signal("character_creation_failure", message)
+	
+######################
+# Character deletion #
+######################
+
+func delete_character(character):
+	rpc_id(SERVER_ID, "delete_character", id, login_security_token, password.hash(), character)
+	
+remote func character_deletion_success():
+	emit_signal("character_deletion_success")
+	
+remote func character_deletion_failure(message):
+	emit_signal("character_deletion_failure", message)

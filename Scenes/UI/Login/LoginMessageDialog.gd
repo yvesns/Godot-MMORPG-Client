@@ -4,9 +4,9 @@ extends AcceptDialog
 # 1. Find a way to center the popup when showing it
 
 func _ready():
-	Network.connect_login_failure_signal(self, "_on_login_failure")
-	Network.connect_registration_success_signal(self, "_on_registration_result")
-	Network.connect_registration_failure_signal(self, "_on_registration_result")
+	Network.connect_login_failure(self, "_on_login_failure")
+	Network.connect_registration_success(self, "_on_registration_result")
+	Network.connect_registration_failure(self, "_on_registration_result")
 
 func _on_login_failure():
 	window_title = "Login"

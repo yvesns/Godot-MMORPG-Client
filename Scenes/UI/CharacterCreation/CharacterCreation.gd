@@ -19,8 +19,8 @@ func _ready():
 	
 	character_info.character_race = "Human"
 	
-	Network.connect_character_creation_success_signal(self, "_on_character_creation_success")
-	Network.connect_character_creation_failure_signal(self, "_on_character_creation_failure")
+	Network.connect_character_creation_success(self, "_on_character_creation_success")
+	Network.connect_character_creation_failure(self, "_on_character_creation_failure")
 
 func _on_LineEdit_text_changed(new_name):
 	character_info.character_name = new_name
