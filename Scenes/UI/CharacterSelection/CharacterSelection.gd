@@ -6,18 +6,18 @@ var character_container = null
 var minimum_character_slots = 3
 
 func _ready():
-	var character_scene = load(Global.paths["CharacterSlot.tscn"])
-	var character
+	var character_slot_scene = load(Global.paths["CharacterSlot.tscn"])
+	var character_slot
 	characters = Global.scene_args
 	
 	for i in range(minimum_character_slots):
-		character = character_scene.instance()
-		character.connect_character_selected_signal(self, "_on_character_selected")
+		character_slot = character_slot_scene.instance()
+		character_slot.connect_character_selected_signal(self, "_on_character_selected")
 		
 		if i < characters.size():
-			character.init(characters[i])
+			character_slot.init(characters[i])
 		
-		find_node("CharactersHBox").add_child(character)
+		find_node("CharactersHBox").add_child(character_slot)
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
 	Network.connect_character_deletion_success(self, "_on_character_deletion_success")
