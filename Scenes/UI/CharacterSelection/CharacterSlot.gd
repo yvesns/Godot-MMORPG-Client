@@ -10,8 +10,7 @@ func _ready():
 	
 func init(character):
 	#Build character based on his equipment
-	
-	self.character = character
+	self.character = load(Global.paths["PlayerCharacter.gd"]).new()
 	
 	find_node("TextureRect").texture = load(Global.paths["CharacterPlaceholder"])
 

@@ -175,7 +175,7 @@ remote func registration_failure(message):
 ######################
 
 func create_character(character):
-	rpc_id(SERVER_ID, "create_character", id, login_security_token, character)
+	rpc_id(SERVER_ID, "create_character", id, login_security_token, character.serialize())
 
 remote func character_creation_success(characters):
 	emit_signal("character_creation_success", characters)
@@ -188,7 +188,7 @@ remote func character_creation_failure(message):
 ######################
 
 func delete_character(character):
-	rpc_id(SERVER_ID, "delete_character", id, login_security_token, password.hash(), character)
+	rpc_id(SERVER_ID, "delete_character", id, login_security_token, password.hash(), character.get_name())
 	
 remote func character_deletion_success():
 	emit_signal("character_deletion_success")

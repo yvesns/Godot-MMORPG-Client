@@ -9,6 +9,7 @@ func _ready():
 	paths["CharacterSelection.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSelection.tscn"
 	paths["CharacterSlot.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSlot.tscn"
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
+	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
 	
 func get_file_path(file_name):
 	if paths.has(file_name):

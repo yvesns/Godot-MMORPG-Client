@@ -11,7 +11,7 @@ var character
 var race_button_group = ButtonGroup.new()
 
 func _ready():
-	character = preload("res://Scenes/Creatures/Player/PlayerCharacter.gd").new()
+	character = load(Global.paths["PlayerCharacter.gd"]).new()
 	
 	find_node("HumanCheckbox").group = race_button_group
 	find_node("VampireCheckbox").group = race_button_group
