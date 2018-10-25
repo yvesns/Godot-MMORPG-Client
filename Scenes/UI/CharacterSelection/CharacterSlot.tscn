@@ -2,16 +2,12 @@
 
 [ext_resource path="res://Scenes/UI/CharacterSelection/CharacterSlot.gd" type="Script" id=1]
 
-[node name="Character" type="PanelContainer" index="0"]
+[node name="Character" type="PanelContainer"]
 
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -57,6 +53,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer" index="0"]
 
@@ -74,8 +71,9 @@ size_flags_vertical = 4
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" index="1"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -85,6 +83,21 @@ margin_top = 18.0
 margin_bottom = 18.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
@@ -92,6 +105,25 @@ size_flags_vertical = 3
 stretch_mode = 0
 _sections_unfolded = [ "Rect", "Size Flags" ]
 
-[connection signal="gui_input" from="CenterContainer/VBoxContainer/TextureRect" to="." method="_on_TextureRect_gui_input"]
+[node name="CenterContainer2" type="CenterContainer" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+use_top_left = false
+_sections_unfolded = [ "Size Flags" ]
+
+[connection signal="gui_input" from="CenterContainer2" to="." method="_on_CenterContainer2_gui_input"]
 
 

@@ -94,7 +94,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="Buttons" type="HBoxContainer" parent="MainContainer/VBoxContainer" index="1"]
 

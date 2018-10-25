@@ -6,6 +6,11 @@ var character_race
 func _ready():
 	pass
 	
+func init_from_database(database_character):
+	set_name(database_character.name)
+	set_race(database_character.race_fk)
+	set_class(database_character.class_fk)
+	
 func get_class():
 	return character_class
 	

@@ -8,7 +8,7 @@ var minimum_character_slots = 3
 func _ready():
 	var character_slot_scene = load(Global.paths["CharacterSlot.tscn"])
 	var character_slot
-	characters = Global.scene_args
+	characters = Global.scene_arg_stack.pop_front()
 	
 	for i in range(minimum_character_slots):
 		character_slot = character_slot_scene.instance()
@@ -58,10 +58,12 @@ func _on_Delete_button_up():
 	popup.popup_centered()
 	
 func _on_character_delete(character):
-	Network.delete_character()
+	Network.delete_character(character)
 	
 func _on_character_deletion_success():
-	find_node("CharactersHBox").remove_child(selected_character)
+	Global.scene_args
+	character_container.remove_character()
+	find_node("Popup").hide()
 
 func _on_character_deletion_failure(message):
 	var dialog = AcceptDialog.new()

@@ -38,7 +38,6 @@ func _on_Create_button_up():
 	
 	character.set_class(character.get_class() + character.get_race())
 	
-	print("Sending request to network")
 	Network.create_character(character)
 
 func _on_Cancel_button_up():
