@@ -1,5 +1,8 @@
 extends Popup
 
+# TODO
+# Maybe use some other way to communicate a error instead of using a popup
+
 signal delete_character(character)
 
 var click_pos = null
@@ -12,11 +15,11 @@ func _ready():
 func set_character(character):
 	self.character = character
 	
-func build_mismatch_dialog(title, message):
-	var dialog = AcceptDialog.new()
+func build_name_mismatch_dialog():
+	var dialog = find_node("AcceptDialog")
 	
-	dialog.window_title = title
-	dialog.dialog_text = message
+	dialog.window_title = "Character deletion"
+	dialog.dialog_text = "Name mismatch"
 	
 	return dialog
 	
@@ -36,7 +39,7 @@ func _on_TitleContainer_gui_input(event):
 
 func _on_Confirm_button_up():
 	if character_name != character.get_name():
-		build_mismatch_dialog("Character deletion", "Name mismatch").popup_centered()
+		build_name_mismatch_dialog().popup_centered()
 		return
 		
 	emit_signal("delete_character", character)

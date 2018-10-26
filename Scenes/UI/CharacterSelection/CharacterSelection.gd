@@ -8,7 +8,7 @@ var minimum_character_slots = 3
 func _ready():
 	var character_slot_scene = load(Global.paths["CharacterSlot.tscn"])
 	var character_slot
-	characters = Global.scene_arg_stack.pop_front()
+	characters = Global.scene_args
 	
 	for i in range(minimum_character_slots):
 		character_slot = character_slot_scene.instance()
@@ -44,9 +44,12 @@ func _on_character_connection_success():
 	print("Character connected")
 
 func _on_Create_button_up():
+	print(characters)
+	print(characters.size())
+	
 	if characters.size() >= 3:
 		return
-		
+	
 	get_tree().change_scene(Global.paths["CharacterCreation.tscn"])
 
 func _on_Delete_button_up():
@@ -61,14 +64,19 @@ func _on_character_delete(character):
 	Network.delete_character(character)
 	
 func _on_character_deletion_success():
-	Global.scene_args
+	var character = load(Global.paths["PlayerCharacter.gd"]).new()
+	
+	for i in range(characters.size()):
+		character.init_from_database(characters[i])
+		
+		if selected_character.get_name() == character.get_name():
+			characters.remove(i)
+	
 	character_container.remove_character()
 	find_node("Popup").hide()
 
 func _on_character_deletion_failure(message):
-	var dialog = AcceptDialog.new()
-	
+	var dialog = find_node("AcceptDialog")
 	dialog.window_title = "Character deletion failed"
 	dialog.dialog_text = message
-	
 	dialog.popup_centered()

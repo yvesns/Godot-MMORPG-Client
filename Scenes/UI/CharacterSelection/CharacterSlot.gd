@@ -22,7 +22,7 @@ func connect_character_selected_signal(node, method_name):
 	connect("character_selected", node, method_name)
 	
 func select():
-	modulate = ColorN("gray")
+	modulate = ColorN("lightgray")
 	
 func deselect():
 	modulate = original_color

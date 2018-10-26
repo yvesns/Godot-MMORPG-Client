@@ -47,6 +47,6 @@ func _on_connection_timeout():
 	logging_in = false
 	
 func _on_login_success(player_characters):
-	Global.scene_arg_stack.push_front(player_characters)
+	Global.scene_args = player_characters
 	
 	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])

@@ -1,6 +1,6 @@
 extends Node
 
-var scene_arg_stack = []
+var scene_args
 var paths = {}
 
 func _ready():

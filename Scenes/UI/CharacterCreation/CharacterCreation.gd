@@ -7,8 +7,8 @@ extends TextureRect
 # 4. Add gui theme
 
 var character
-
 var race_button_group = ButtonGroup.new()
+var creating_character = false
 
 func _ready():
 	character = load(Global.paths["PlayerCharacter.gd"]).new()
@@ -36,16 +36,28 @@ func _on_Create_button_up():
 	    character.get_race() == ""):
 		return
 	
+	creating_character = true
+	
 	character.set_class(character.get_class() + character.get_race())
 	
 	Network.create_character(character)
 
 func _on_Cancel_button_up():
+	if creating_character:
+		return
+	
 	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])
 	
 func _on_character_creation_success(characters):
 	Global.scene_args = characters
+	
 	get_tree().change_scene(Global.paths["CharacterSelection.tscn"])
 	
 func _on_character_creation_failure(message):
-	print(message)
+	creating_character = false
+	character.set_class("Common")
+	
+	var dialog = find_node("AcceptDialog")
+	dialog.window_title = "Character creation error"
+	dialog.dialog_text = message
+	dialog.popup_centered()
