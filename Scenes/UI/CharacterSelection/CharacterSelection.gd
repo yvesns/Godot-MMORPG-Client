@@ -41,12 +41,21 @@ func _on_Cancel_button_up():
 	get_tree().change_scene(Global.paths["LoginUI.tscn"])
 
 func _on_character_connection_success():
-	print("Character connected")
+	var map = Global.paths[selected_character + ".tscn"]
+	var self_instance = Global.self_instance
+	
+	self_instance = load(Global.paths["Fighter.tscn"]).instance()
+	self_instance.set_info(selected_character)
+	self_instance.hide()
+	self_instance.z_index += 1
+	
+	get_tree().change_scene(map)
+	get_tree().get_root().add_child(self_instance)
+	
+	#self_instance.position = self_info.position
+	self_instance.show()
 
 func _on_Create_button_up():
-	print(characters)
-	print(characters.size())
-	
 	if characters.size() >= 3:
 		return
 	

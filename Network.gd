@@ -32,8 +32,6 @@ const SERVER_ID = 1
 #############
 
 var peer
-var self_info
-var self_instance
 var user
 var password
 var id = -1
@@ -47,7 +45,6 @@ func _ready():
 	
 	get_tree().connect("connected_to_server", self, "_connection_success")
 	get_tree().connect("connection_failed", self, "_connection_failure")
-	get_tree().connect("network_peer_connected", self, "_player_connected")
 	
 func _connection_success():
 	print("Connected to server")
@@ -68,7 +65,7 @@ func connect_to_server():
 	get_tree().set_meta("network_peer", peer)
 	
 func connect_character(character):
-	rpc_id(SERVER_ID, "connect_character", id, login_security_token, character)
+	rpc_id(SERVER_ID, "connect_character", id, login_security_token, character.serialize())
 	
 remote func network_init(security_token):
 	if id > 1:
@@ -81,21 +78,6 @@ remote func network_init(security_token):
 	connecting = false
 	
 	emit_signal("connection_established")
-	
-	#Load map
-	#Initialize self on map
-	
-	#var map = "res://Scenes/Maps/" + player_info.map + ".tscn"
-	#self_info = player_info
-	#self_instance = preload("res://Scenes/Creatures/Player/Slayer/Sworder.tscn").instance()
-	#self_instance.hide()
-	#self_instance.z_index += 1
-	
-	#get_tree().change_scene(map)
-	#get_tree().get_root().add_child(self_instance)
-	
-	#self_instance.position = self_info.position
-	#self_instance.show()
 	
 #####################
 # Signal connectors #

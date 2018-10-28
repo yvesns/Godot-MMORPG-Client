@@ -3,6 +3,8 @@ extends Node
 var scene_args
 var paths = {}
 
+var self_instance
+
 func _ready():
 	paths["LoginUI.tscn"] = "res://Scenes/UI/Login/LoginUI.tscn"
 	paths["CharacterCreation.tscn"] = "res://Scenes/UI/CharacterCreation/CharacterCreation.tscn"
@@ -10,6 +12,10 @@ func _ready():
 	paths["CharacterSlot.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSlot.tscn"
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
+	
+	paths["Fighter.tscn"] = "res://Scenes/Creatures/Player/Human/Fighter.tscn"
+	
+	paths["TestMap.tscn"] = "res://Scenes/Maps/TestMap.tscn"
 	
 func get_file_path(file_name):
 	if paths.has(file_name):
