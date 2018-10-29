@@ -6,4 +6,4 @@ func _ready():
 	pass
 	
 func set_info(info):
-	this.info = info
+	self.info = info

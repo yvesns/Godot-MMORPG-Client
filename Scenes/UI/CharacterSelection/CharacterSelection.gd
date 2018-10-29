@@ -41,7 +41,7 @@ func _on_Cancel_button_up():
 	get_tree().change_scene(Global.paths["LoginUI.tscn"])
 
 func _on_character_connection_success():
-	var map = Global.paths[selected_character + ".tscn"]
+	var map = Global.paths[selected_character.get_respawn_map() + ".tscn"]
 	var self_instance = Global.self_instance
 	
 	self_instance = load(Global.paths["Fighter.tscn"]).instance()
