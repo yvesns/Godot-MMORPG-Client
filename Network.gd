@@ -8,7 +8,7 @@ signal connection_established
 
 signal login_success(player_characters)
 signal login_failure
-signal character_connection_success
+signal character_connection_success(map)
 
 signal registration_success(message)
 signal registration_failure(message)
@@ -136,8 +136,8 @@ remote func login_success(player_characters):
 remote func login_failure():
 	emit_signal("login_failure")
 	
-remote func character_connection_success():
-	emit_signal("character_connection_success")
+remote func character_connection_success(map):
+	emit_signal("character_connection_success", map)
 	
 ################
 # Registration #

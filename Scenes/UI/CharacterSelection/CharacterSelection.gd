@@ -40,8 +40,8 @@ func _on_GameStart_button_up():
 func _on_Cancel_button_up():
 	get_tree().change_scene(Global.paths["LoginUI.tscn"])
 
-func _on_character_connection_success():
-	var map = Global.paths[selected_character.get_respawn_map() + ".tscn"]
+func _on_character_connection_success(map):
+	var map_path = Global.paths[map + ".tscn"]
 	var self_instance = Global.self_instance
 	
 	self_instance = load(Global.paths["Fighter.tscn"]).instance()
@@ -49,7 +49,7 @@ func _on_character_connection_success():
 	self_instance.hide()
 	self_instance.z_index += 1
 	
-	get_tree().change_scene(map)
+	get_tree().change_scene(map_path)
 	get_tree().get_root().add_child(self_instance)
 	
 	#self_instance.position = self_info.position
