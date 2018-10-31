@@ -20,6 +20,7 @@ func _ready():
 		find_node("CharactersHBox").add_child(character_slot)
 		
 	Network.connect_character_connection_success(self, "_on_character_connection_success")
+	Network.connect_character_connection_failure(self, "_on_character_connection_failure")
 	Network.connect_character_deletion_success(self, "_on_character_deletion_success")
 	Network.connect_character_deletion_failure(self, "_on_character_deletion_failure")
 	
@@ -40,7 +41,7 @@ func _on_GameStart_button_up():
 func _on_Cancel_button_up():
 	get_tree().change_scene(Global.paths["LoginUI.tscn"])
 
-func _on_character_connection_success(map):
+func _on_character_connection_success(map, character_position):
 	var map_path = Global.paths[map + ".tscn"]
 	var self_instance = Global.self_instance
 	
@@ -52,8 +53,11 @@ func _on_character_connection_success(map):
 	get_tree().change_scene(map_path)
 	get_tree().get_root().add_child(self_instance)
 	
-	#self_instance.position = self_info.position
+	self_instance.position = Vector2(character_position.x, character_position.y)
 	self_instance.show()
+	
+func _on_character_connection_failure(message):
+	pass
 
 func _on_Create_button_up():
 	if characters.size() >= 3:

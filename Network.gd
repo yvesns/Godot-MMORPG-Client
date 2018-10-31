@@ -8,7 +8,8 @@ signal connection_established
 
 signal login_success(player_characters)
 signal login_failure
-signal character_connection_success(map)
+signal character_connection_success(map, character_position)
+signal character_connection_failure(message)
 
 signal registration_success(message)
 signal registration_failure(message)
@@ -99,6 +100,9 @@ func connect_login_failure(node, method_name):
 func connect_character_connection_success(node, method_name):
 	connect("character_connection_success", node, method_name)
 	
+func connect_character_connection_failure(node, method_name):
+	connect("character_connection_failure", node, method_name)
+	
 # Registration
 func connect_registration_success(node, method_name):
 	connect("registration_success", node, method_name)
@@ -136,8 +140,11 @@ remote func login_success(player_characters):
 remote func login_failure():
 	emit_signal("login_failure")
 	
-remote func character_connection_success(map):
-	emit_signal("character_connection_success", map)
+remote func character_connection_success(map, character_position):
+	emit_signal("character_connection_success", map, character_position)
+	
+remote func character_connection_failure(message):
+	emit_signal("character_connection_failure", message)
 	
 ################
 # Registration #
