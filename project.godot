@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Network="*res://Network.gd"
 Global="*res://Global.gd"
+InputHandler="*res://InputHandler.gd"
 
 [rendering]
 

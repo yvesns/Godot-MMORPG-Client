@@ -66,7 +66,7 @@ func connect_to_server():
 	get_tree().set_meta("network_peer", peer)
 	
 func connect_character(character):
-	rpc_id(SERVER_ID, "connect_character", id, login_security_token, character.serialize())
+	rpc_id(SERVER_ID, "connect_character", id, login_security_token, character.get_name())
 	
 remote func network_init(security_token):
 	if id > 1:

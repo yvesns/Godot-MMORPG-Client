@@ -3,7 +3,7 @@ extends Node
 var scene_args
 var paths = {}
 
-var self_instance
+var player_node
 
 func _ready():
 	paths["LoginUI.tscn"] = "res://Scenes/UI/Login/LoginUI.tscn"
