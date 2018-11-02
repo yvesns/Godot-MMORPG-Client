@@ -45,8 +45,8 @@ func _on_character_connection_success(map, character_position):
 	var map_path = Global.paths[map + ".tscn"]
 	Global.player_node
 	
-	Global.player_node = load(Global.paths["Fighter.tscn"]).instance()
-	Global.player_node.set_info(selected_character)
+	Global.player_node = load(Global.paths["PlayerCharacterNode.tscn"]).instance()
+	Global.player_node.init(selected_character)
 	Global.player_node.hide()
 	Global.player_node.z_index += 1
 	
@@ -55,8 +55,6 @@ func _on_character_connection_success(map, character_position):
 	
 	Global.player_node.position = Vector2(character_position.x, character_position.y)
 	Global.player_node.show()
-	
-	InputHandler.set_process_input(true)
 	
 func _on_character_connection_failure(message):
 	pass

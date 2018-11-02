@@ -7,6 +7,10 @@ var logout_map = ""
 var logout_x = 0
 var logout_y = 0
 
+# In pixels/second. Not getting it from the database yet.
+# Might be a good idea to calculate from the map tile size.
+var movement_speed = 160
+
 func _ready():
 	pass
 	
@@ -54,6 +58,12 @@ func get_logout_y():
 	
 func set_logout_y(y):
 	logout_y = y
+	
+func get_movement_speed():
+	return movement_speed
+	
+func set_movement_speed(speed):
+	movement_speed = speed
 	
 func serialize():
 	return {
