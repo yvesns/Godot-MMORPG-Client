@@ -4,6 +4,7 @@ var character_info
 var move_to = null
 var moving = false
 var movement_speed = 160
+var position_tolerance = 2
 
 func _ready():
 	pass
@@ -36,8 +37,18 @@ func get_motion():
 		
 	return Vector2(x, y)
 	
+func destination_reached():
+	return ( 
+		abs(self.position.x - move_to.x) < position_tolerance && 
+		abs(self.position.y - move_to.y) < position_tolerance
+	)
+	
 func _physics_process(delta):
 	if !moving || move_to == null:
+		return
+		
+	if destination_reached():
+		moving = false
 		return
 		
 	var motion = get_motion()

@@ -13,7 +13,7 @@ func _ready():
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
 	
-	paths["PlayerCharacterNode.tscn"] = "res://Scenes/Creatures/Player/PlayerCharacterNode.gd"
+	paths["Fighter.tscn"] = "res://Scenes/Creatures/Player/Human/Fighter.tscn"
 	
 	paths["TestMap.tscn"] = "res://Scenes/Maps/TestMap.tscn"
 	
