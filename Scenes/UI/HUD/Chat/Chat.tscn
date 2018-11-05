@@ -1,15 +1,14 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/UI/HUD/Chat.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/UI/HUD/Chat/Chat.gd" type="Script" id=1]
+
 
 [node name="Chat" type="VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 336.0
-margin_bottom = 198.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -20,14 +19,14 @@ alignment = 0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." index="0"]
+[node name="ChatText" type="RichTextLabel" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 336.0
-margin_bottom = 170.0
+margin_right = 1024.0
+margin_bottom = 572.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -42,10 +41,10 @@ meta_underlined = true
 tab_size = 4
 text = ""
 scroll_active = true
-scroll_following = false
+scroll_following = true
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Grow Direction", "Size Flags" ]
 
 [node name="LineEdit" type="LineEdit" parent="." index="1"]
 
@@ -53,9 +52,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 174.0
-margin_right = 336.0
-margin_bottom = 198.0
+margin_top = 576.0
+margin_right = 1024.0
+margin_bottom = 600.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
