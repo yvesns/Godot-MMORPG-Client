@@ -10,12 +10,14 @@ func _ready():
 	paths["CharacterCreation.tscn"] = "res://Scenes/UI/CharacterCreation/CharacterCreation.tscn"
 	paths["CharacterSelection.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSelection.tscn"
 	paths["CharacterSlot.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSlot.tscn"
-	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
-	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
-	
 	paths["Fighter.tscn"] = "res://Scenes/Creatures/Player/Human/Fighter.tscn"
-	
 	paths["TestMap.tscn"] = "res://Scenes/Maps/TestMap.tscn"
+	paths["QuickItem.tscn"] = "res://Scenes/UI/HUD/QuickItems/QuickItem.tscn"
+	
+	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
+	paths["Item.gd"] = "res://Classes/Item/Item.gd"
+	
+	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	
 func get_file_path(file_name):
 	if paths.has(file_name):
