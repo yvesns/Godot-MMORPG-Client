@@ -16,6 +16,7 @@ func _ready():
 	
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
 	paths["Item.gd"] = "res://Classes/Item/Item.gd"
+	paths["NullItem.gd"] = "res://Classes/Item/NullItem.gd"
 	
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	

@@ -8,3 +8,6 @@ func _ready():
 	
 func is_stackable():
 	return false
+	
+func get_texture():
+	return texture

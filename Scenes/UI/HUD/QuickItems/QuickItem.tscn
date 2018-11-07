@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/UI/HUD/QuickItems/QuickItem.gd" type="Script" id=1]
 
-[node name="QuickItem" type="TextureRect" index="0"]
+[node name="QuickItem" type="TextureRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -10,6 +10,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -18,7 +19,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch_mode = 0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." index="0"]
 

@@ -21,3 +21,14 @@ func _input(event):
 		
 		chat_text.text += line_edit.text
 		line_edit.text = ""
+
+func _on_Button_button_up():
+	var chat_text = find_node("ChatText")
+	var button = find_node("Button")
+	
+	if chat_text.visible:
+		chat_text.hide()
+		button.text = "/\\"
+	else:
+		chat_text.show()
+		button.text = "V"
