@@ -13,10 +13,12 @@ func _ready():
 	paths["Fighter.tscn"] = "res://Scenes/Creatures/Player/Human/Fighter.tscn"
 	paths["TestMap.tscn"] = "res://Scenes/Maps/TestMap.tscn"
 	paths["QuickItem.tscn"] = "res://Scenes/UI/HUD/QuickItems/QuickItem.tscn"
+	paths["SkillSlot.tscn"] = "res://Scenes/UI/HUD/Skills/SkillSlot.tscn"
 	
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
 	paths["Item.gd"] = "res://Classes/Item/Item.gd"
 	paths["NullItem.gd"] = "res://Classes/Item/NullItem.gd"
+	paths["NullSkill.gd"] = "res://Classes/Skill/NullSkill.gd"
 	
 	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	
