@@ -21,7 +21,8 @@ func _ready():
 	paths["NullItem.gd"] = "res://Classes/Item/NullItem.gd"
 	paths["NullSkill.gd"] = "res://Classes/Skill/NullSkill.gd"
 	
-	paths["CharacterPlaceholder"] = "res://Data/Images/Creatures/Player/PLAYER.png"
+	paths["CharacterPlaceholder.png"] = "res://Data/Images/Creatures/Player/PLAYER.png"
+	paths["TestItem.png"] = "res://Data/Images/Items/TestItem.png"
 	
 func get_file_path(file_name):
 	if paths.has(file_name):
