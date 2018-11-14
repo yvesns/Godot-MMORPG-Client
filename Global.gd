@@ -5,7 +5,10 @@ var paths = {}
 
 var player_node
 
+var inventory_slot_size = 50
+
 func _ready():
+	#Scenes
 	paths["LoginUI.tscn"] = "res://Scenes/UI/Login/LoginUI.tscn"
 	paths["CharacterCreation.tscn"] = "res://Scenes/UI/CharacterCreation/CharacterCreation.tscn"
 	paths["CharacterSelection.tscn"] = "res://Scenes/UI/CharacterSelection/CharacterSelection.tscn"
@@ -15,12 +18,16 @@ func _ready():
 	paths["QuickItem.tscn"] = "res://Scenes/UI/HUD/QuickItems/QuickItem.tscn"
 	paths["SkillSlot.tscn"] = "res://Scenes/UI/HUD/Skills/SkillSlot.tscn"
 	paths["InventorySlot.tscn"] = "res://Scenes/UI/Inventory/InventorySlot.tscn"
+	paths["ItemScene.tscn"] = "res://Scenes/Items/ItemScene.tscn"
 	
+	#Scripts
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"
 	paths["Item.gd"] = "res://Classes/Item/Item.gd"
 	paths["NullItem.gd"] = "res://Classes/Item/NullItem.gd"
+	paths["TestItem.gd"] = "res://Classes/Item/TestItem.gd"
 	paths["NullSkill.gd"] = "res://Classes/Skill/NullSkill.gd"
 	
+	#Data
 	paths["CharacterPlaceholder.png"] = "res://Data/Images/Creatures/Player/PLAYER.png"
 	paths["TestItem.png"] = "res://Data/Images/Items/TestItem.png"
 	

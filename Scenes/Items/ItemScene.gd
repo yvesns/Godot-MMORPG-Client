@@ -1,8 +1,11 @@
 extends TextureRect
 
+var item
+
 func _ready():
 	pass
 	
-func init(item_texture, width, height):
-	rect_size = Vector2(width, height)
-	texture = item_texture
+func init(item):
+	self.item = item
+	rect_size = Vector2(item.get_width(), item.get_height())
+	texture = item.get_texture()
