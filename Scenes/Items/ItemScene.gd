@@ -1,4 +1,4 @@
-extends TextureRect
+extends Sprite
 
 var item
 
@@ -7,5 +7,4 @@ func _ready():
 	
 func init(item):
 	self.item = item
-	rect_size = Vector2(item.get_width(), item.get_height())
 	texture = item.get_texture()
