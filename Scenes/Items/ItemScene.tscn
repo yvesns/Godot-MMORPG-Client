@@ -7,14 +7,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="ItemScene" type="Sprite" index="0"]
+[node name="ItemScene" type="Sprite"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Animation", "Rect", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -22,7 +21,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
