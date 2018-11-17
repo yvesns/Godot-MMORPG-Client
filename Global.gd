@@ -4,6 +4,7 @@ var scene_args
 var paths = {}
 
 var player_node
+var player_data
 
 var inventory_slot_size = 50
 

@@ -1,6 +1,7 @@
 extends Node
 
 var item_on_cursor = null
+var inventory_node = null
 
 func _ready():
 	#Remove later
@@ -17,9 +18,19 @@ func run_test():
 	get_tree().get_root().call_deferred("add_child", item_scene)
 	#get_tree().get_root().add_child(item_scene)
 	
-func move_item_on_cursor():
-	item_on_cursor.position = item_on_cursor.get_global_mouse_position()
-	
 func _input(event):
 	if event is InputEventMouseMotion && item_on_cursor != null:
 		move_item_on_cursor()
+		inventory_node.is_item_over()
+	
+func move_item_on_cursor():
+	item_on_cursor.position = item_on_cursor.get_global_mouse_position()
+		
+func set_inventory_node(inventory_node):
+	self.inventory_node = inventory_node
+	
+func _on_item_scene_clicked(item):
+	if (inventory_node != null &&
+		inventory_node.visible &&
+		inventory_node.is_item_over()):
+		inventory_node.handle_item_insertion(item)
