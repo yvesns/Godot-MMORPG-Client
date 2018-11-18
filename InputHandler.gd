@@ -21,7 +21,6 @@ func run_test():
 func _input(event):
 	if event is InputEventMouseMotion && item_on_cursor != null:
 		move_item_on_cursor()
-		inventory_node.is_item_over()
 	
 func move_item_on_cursor():
 	item_on_cursor.position = item_on_cursor.get_global_mouse_position()

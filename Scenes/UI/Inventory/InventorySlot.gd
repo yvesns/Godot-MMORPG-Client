@@ -3,8 +3,12 @@ extends PanelContainer
 var slot_area
 var original_color
 var row
-var row_position
+var column
+
+var item = null
 var is_item_over = false
+var has_item = false
+var is_root = false
 
 func _ready():
 	slot_area = find_node("Area2D")
@@ -18,6 +22,14 @@ func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
 	modulate = original_color
 	is_item_over = false
 
-func init(row, position):
+func init(row, column):
 	self.row = row
-	self.row_position = row_position
+	self.column = column
+	
+func set_item(item, is_root):
+	self.item = item
+	self.is_root = is_root
+	has_item = true
+	
+	if is_root:
+		pass
