@@ -12,3 +12,7 @@ func init(item):
 	texture = item.get_texture()
 	
 	find_node("CollisionShape2D").shape.extents = extents
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if Input.is_action_just_pressed("mouse_left"):
+		InputHandler._on_item_scene_clicked(item)

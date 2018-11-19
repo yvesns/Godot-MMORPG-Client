@@ -16,7 +16,6 @@ func run_test():
 	item_on_cursor = item_scene
 	
 	get_tree().get_root().call_deferred("add_child", item_scene)
-	#get_tree().get_root().add_child(item_scene)
 	
 func _input(event):
 	if event is InputEventMouseMotion && item_on_cursor != null:

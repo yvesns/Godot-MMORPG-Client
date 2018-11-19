@@ -32,4 +32,4 @@ func set_item(item, is_root):
 	has_item = true
 	
 	if is_root:
-		pass
+		find_node("TextureRect").texture = item.get_texture
