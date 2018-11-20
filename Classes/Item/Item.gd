@@ -1,9 +1,12 @@
 extends Node
 
+enum State {IN_INVENTORY, ON_GROUND, ON_CURSOR}
+
 var item_name
 var texture
 var inventory_slot_width = 0
 var inventory_slot_height = 0
+var state
 
 func _ready():
 	pass
