@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="ItemScene" type="Sprite" index="0"]
+[node name="ItemScene" type="Sprite"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Animation", "Rect", "Z Index" ]

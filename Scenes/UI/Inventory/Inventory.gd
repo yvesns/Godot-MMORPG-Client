@@ -5,7 +5,8 @@ var row_size = 10
 var slots = {}
 
 func _ready():
-	var slot_container = find_node("GridContainer")
+	var slot_container = find_node("SlotGrid")
+	var slot_image_container = find_node("SlotImageGrid")
 	var InventorySlot = load(Global.paths["InventorySlot.tscn"])
 	var intentory_slot
 		
@@ -16,6 +17,7 @@ func _ready():
 			slots[i][j] = InventorySlot.instance()
 			slots[i][j].init(i, j)
 			slot_container.add_child(slots[i][j])
+			slot_image_container.add_child(slots[i][j].get_slot_image_node())
 			
 	InputHandler.set_inventory_node(self)
 	

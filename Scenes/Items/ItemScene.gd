@@ -25,7 +25,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && !event.pressed && is_mouse_over:
 			InputHandler._on_item_scene_clicked(item)
-
+			
 func _on_Area2D_mouse_entered():
 	is_mouse_over = true
 	
