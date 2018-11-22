@@ -31,4 +31,7 @@ func _on_item_scene_clicked(item):
 	if (inventory_node != null &&
 		inventory_node.visible &&
 		inventory_node.is_item_over()):
-		inventory_node.handle_item_insertion(item)
+			
+		if inventory_node.handle_item_insertion(item):
+			item_on_cursor.queue_free()
+			item_on_cursor = null

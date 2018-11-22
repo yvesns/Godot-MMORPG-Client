@@ -19,10 +19,16 @@ func _ready():
 	slot_image_node = SlotImage.instance()
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
+	if area == slot_image_node.get_area():
+		return
+	
 	modulate = ColorN("Blue")
 	is_item_over = true
 
 func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
+	if area == slot_image_node.get_area():
+		return
+	
 	modulate = original_color
 	is_item_over = false
 
@@ -36,8 +42,7 @@ func set_item(item, is_root):
 	has_item = true
 	
 	if is_root:
-		#find_node("TextureRect").texture = item.get_texture()
-		slot_image_node.set_texture(item.get_texture())
+		slot_image_node.set_item(item)
 		
 func get_slot_image_node():
 	return slot_image_node

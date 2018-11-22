@@ -38,8 +38,14 @@ func get_hovering_item_top_left_slot():
 	return null
 	
 func has_enough_space(item, slot):
-	for i in range(item.inventory_slot_width):
-		for j in range(item.inventory_slot_height):
+	for i in range(item.inventory_slot_height):
+		for j in range(item.inventory_slot_width):
+			if slot.row + i > row_count - 1:
+				return false
+				
+			if slot.column + j > row_size - 1:
+				return false
+			
 			if slots[slot.row + i][slot.column + j].has_item:
 				return false
 	
@@ -48,8 +54,8 @@ func has_enough_space(item, slot):
 func insert_item(item, slot):
 	var is_root_slot = false
 	
-	for i in range(item.inventory_slot_width):
-		for j in range(item.inventory_slot_height):
+	for i in range(item.inventory_slot_height):
+		for j in range(item.inventory_slot_width):
 			if i == 0 && j == 0:
 				is_root_slot = true
 			else:
@@ -61,7 +67,10 @@ func handle_item_insertion(item):
 	var slot = get_hovering_item_top_left_slot()
 	
 	if slot == null:
-		return
+		return false
 		
 	if has_enough_space(item, slot):
 		insert_item(item, slot)
+		return true
+		
+	return false
