@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="InventorySlot" type="PanelContainer" index="0"]
+[node name="InventorySlot" type="PanelContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
