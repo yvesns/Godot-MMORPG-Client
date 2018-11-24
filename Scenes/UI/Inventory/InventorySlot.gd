@@ -10,35 +10,20 @@ var is_item_over = false
 var has_item = false
 var is_root = false
 
-var SlotImage = load(Global.paths["InventorySlotImage.tscn"])
+var SlotImage
 var slot_image_node
 
 func _ready():
+	SlotImage = load(Global.paths["InventorySlotImage.tscn"])
 	slot_area = find_node("Area2D")
 	original_color = modulate
 	slot_image_node = SlotImage.instance()
 
 func _on_Area2D_area_shape_entered(area_id, area, area_shape, self_shape):
-	print("area_id")
-	print(area_id)
-	print("Slot image area id")
-	print(RID(slot_image_node.get_area()).get_id())
-	print("Slot image id")
-	print(RID(slot_image_node).get_id())
-	print("Area id")
-	print(RID(area).get_id())
-	print("-")
-	
-	if area_id == RID(slot_image_node.get_area()).get_id():
-		return
-	
 	modulate = ColorN("Blue")
 	is_item_over = true
 
 func _on_Area2D_area_shape_exited(area_id, area, area_shape, self_shape):
-	if area_id == RID(slot_image_node.get_area()).get_id():
-		return
-	
 	modulate = original_color
 	is_item_over = false
 

@@ -18,3 +18,7 @@ func get_area_shape():
 func _on_TextureRect_gui_input(event):
 	if item == null:
 		return
+		
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT && !event.pressed:
+			InputHandler._on_inventory_item_clicked(item)
