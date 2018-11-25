@@ -14,11 +14,17 @@ func get_area():
 	
 func get_area_shape():
 	return find_node("CollisionShape2D").get_shape()
-
-func _on_TextureRect_gui_input(event):
+	
+func _gui_input(event):
 	if item == null:
 		return
 		
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT && !event.pressed:
+		if (event.button_index == BUTTON_LEFT && 
+			!event.pressed && 
+			Global.is_mouse_over(
+				get_rect().position, 
+				get_global_mouse_position(), 
+				find_node("TextureRect").texture.get_size()
+			)):
 			InputHandler._on_inventory_item_clicked(item)

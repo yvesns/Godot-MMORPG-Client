@@ -75,3 +75,14 @@ func find_file(file_name):
 			current_dir_path = dir.get_current_dir()
 	
 	return false
+	
+func is_mouse_over(node_position, mouse_position, size):
+	var max_x = node_position.x + size.x
+	var max_y = node_position.y + size.y
+	
+	return (
+		mouse_position.x >= node_position.x &&
+		mouse_position.x <= max_x &&
+		mouse_position.y >= node_position.y &&
+		mouse_position.y <= max_y
+	)

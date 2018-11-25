@@ -10,7 +10,7 @@ extents = Vector2( 10, 10 )
 [node name="ItemScene" type="Sprite"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Animation", "Rect", "Z Index" ]
+_sections_unfolded = [ "Animation", "Rect", "Transform", "Z Index" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
@@ -26,6 +26,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 
