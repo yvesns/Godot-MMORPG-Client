@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/UI/Inventory/InventorySlotImage.gd" type="Script" id=1]
 
-[node name="InventorySlotImage" type="Control" index="0"]
+[node name="InventorySlotImage" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -35,7 +35,5 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
-
-[connection signal="gui_input" from="TextureRect" to="." method="_on_TextureRect_gui_input"]
 
 

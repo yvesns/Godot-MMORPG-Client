@@ -15,12 +15,12 @@ func get_area():
 func get_area_shape():
 	return find_node("CollisionShape2D").get_shape()
 	
-func _gui_input(event):
+func _input(event):
 	if item == null:
 		return
 		
 	if event is InputEventMouseButton:
-		if (event.button_index == BUTTON_LEFT && 
+		if (event.button_index == BUTTON_LEFT &&
 			!event.pressed && 
 			Global.is_mouse_over(
 				get_rect().position, 

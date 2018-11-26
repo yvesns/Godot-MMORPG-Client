@@ -16,8 +16,7 @@ func _ready():
 		for j in range(row_size):
 			slots[i][j] = InventorySlot.instance()
 			slots[i][j].init(i, j)
-			slot_container.add_child(slots[i][j])
-			slot_image_container.add_child(slots[i][j].get_slot_image_node())
+			#slot_container.add_child(slots[i][j])
 			
 	InputHandler.set_inventory_node(self)
 	
