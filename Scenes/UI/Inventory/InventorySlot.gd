@@ -30,3 +30,9 @@ func set_item(item, is_root):
 	self.item = item
 	self.is_root = is_root
 	has_item = true
+	
+func get_row():
+	return row
+	
+func get_column():
+	return column
