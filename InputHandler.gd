@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var item_on_cursor = null
 var inventory_node = null
@@ -14,14 +14,18 @@ func run_test():
 	var test_item = load(Global.paths["TestItem.gd"]).new()
 	test_item.init()
 	
-	set_item_on_cursor(test_item)
+	var item_scene = ItemScene.instance()
+	item_scene.init(test_item)
+	item_on_cursor = item_scene
+	
+	get_tree().get_root().call_deferred("add_child", item_scene)
 	
 func _input(event):
 	if event is InputEventMouseMotion && item_on_cursor != null:
 		move_item_on_cursor()
 	
 func move_item_on_cursor():
-	item_on_cursor.position = item_on_cursor.get_global_mouse_position()
+	item_on_cursor.position = get_global_mouse_position()
 		
 func set_inventory_node(inventory_node):
 	self.inventory_node = inventory_node
@@ -31,7 +35,10 @@ func set_item_on_cursor(item):
 	item_scene.init(item)
 	item_on_cursor = item_scene
 	
-	get_tree().get_root().call_deferred("add_child", item_scene)
+	item_scene.hide()
+	get_tree().get_root().add_child(item_scene)
+	item_scene.position = get_global_mouse_position()
+	item_scene.show()
 	
 func _on_item_scene_clicked(item):
 	if (inventory_node != null &&
@@ -42,5 +49,6 @@ func _on_item_scene_clicked(item):
 			item_on_cursor.queue_free()
 			item_on_cursor = null
 			
-func _on_inventory_item_clicked(item):
-	set_item_on_cursor(item)
+func _on_inventory_item_clicked(inventory_item):
+	set_item_on_cursor(inventory_item.get_item())
+	inventory_item.queue_free()

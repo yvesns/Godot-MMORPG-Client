@@ -19,7 +19,7 @@ func _ready():
 	paths["QuickItem.tscn"] = "res://Scenes/UI/HUD/QuickItems/QuickItem.tscn"
 	paths["SkillSlot.tscn"] = "res://Scenes/UI/HUD/Skills/SkillSlot.tscn"
 	paths["InventorySlot.tscn"] = "res://Scenes/UI/Inventory/InventorySlot.tscn"
-	paths["InventorySlotImage.tscn"] = "res://Scenes/UI/Inventory/InventorySlotImage.tscn"
+	paths["InventoryItem.tscn"] = "res://Scenes/UI/Inventory/InventoryItem.tscn"
 	paths["ItemScene.tscn"] = "res://Scenes/Items/ItemScene.tscn"
 	
 	#Scripts

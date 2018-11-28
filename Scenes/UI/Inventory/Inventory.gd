@@ -4,10 +4,14 @@ var row_count = 5
 var row_size = 10
 var slots = {}
 
+var InventorySlot
+var InventoryItem
+
 func _ready():
 	var slot_container = find_node("SlotGrid")
 	var slot_image_container = find_node("SlotImageGrid")
-	var InventorySlot = load(Global.paths["InventorySlot.tscn"])
+	InventorySlot = load(Global.paths["InventorySlot.tscn"])
+	InventoryItem = load(Global.paths["InventoryItem.tscn"])
 		
 	for i in range(row_count):
 		slots[i] = {}
@@ -51,8 +55,8 @@ func has_enough_space(item, slot):
 	
 func insert_item(item, slot):
 	var is_root_slot = false
-	var inventory_item_texture = TextureRect.new()
-	inventory_item_texture.texture = item.get_texture()
+	var inventory_item = InventoryItem.instance()
+	inventory_item.init(item, slot)
 	
 	for i in range(item.inventory_slot_height):
 		for j in range(item.inventory_slot_width):
@@ -63,9 +67,9 @@ func insert_item(item, slot):
 				
 			slots[slot.row + i][slot.column + j].set_item(item, is_root_slot)
 	
-	find_node("InventoryItemContainer").add_child(inventory_item_texture)
-	inventory_item_texture.margin_left = slot.get_column() * Global.inventory_slot_size
-	inventory_item_texture.margin_top = slot.get_row() * Global.inventory_slot_size
+	find_node("InventoryItemContainer").add_child(inventory_item)
+	inventory_item.margin_left = slot.get_column() * Global.inventory_slot_size + (3.7 * (slot.get_column() + 1))
+	inventory_item.margin_top = slot.get_row() * Global.inventory_slot_size + (3.7 * (slot.get_row() + 1))
 	
 func handle_item_insertion(item):
 	var slot = get_hovering_item_top_left_slot()

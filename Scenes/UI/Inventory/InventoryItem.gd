@@ -1,19 +1,25 @@
-extends Control
+extends TextureRect
 
 var item = null
+var root_slot = null
 
 func _ready():
-	find_node("TextureRect").rect_size = Vector2(Global.inventory_slot_size, Global.inventory_slot_size)
+	pass
 	
-func set_item(item):
+func init(item, root_slot):
 	self.item = item
-	find_node("TextureRect").texture = item.get_texture()
+	self.root_slot = root_slot
+	
+	texture = item.get_texture()
 	
 func get_area():
 	return find_node("Area2D")
 	
 func get_area_shape():
 	return find_node("CollisionShape2D").get_shape()
+	
+func get_item():
+	return item
 	
 func _input(event):
 	if item == null:
@@ -25,6 +31,6 @@ func _input(event):
 			Global.is_mouse_over(
 				get_rect().position, 
 				get_global_mouse_position(), 
-				find_node("TextureRect").texture.get_size()
+				texture.get_size()
 			)):
-			InputHandler._on_inventory_item_clicked(item)
+			InputHandler._on_inventory_item_clicked(self)
