@@ -36,3 +36,7 @@ func get_row():
 	
 func get_column():
 	return column
+	
+func remove_item():
+	item = null
+	has_item = false

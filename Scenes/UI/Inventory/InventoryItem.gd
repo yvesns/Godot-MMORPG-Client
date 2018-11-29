@@ -2,6 +2,7 @@ extends TextureRect
 
 var item = null
 var root_slot = null
+var slots = []
 
 func _ready():
 	pass
@@ -33,4 +34,10 @@ func _input(event):
 				get_global_mouse_position(), 
 				texture.get_size()
 			)):
-			InputHandler._on_inventory_item_clicked(self)
+			InputHandler._on_inventory_item_clicked(self, root_slot)
+			
+func add_slot(slot):
+	slots.append(slot)
+	
+func get_slots():
+	return slots

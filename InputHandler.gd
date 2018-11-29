@@ -49,6 +49,7 @@ func _on_item_scene_clicked(item):
 			item_on_cursor.queue_free()
 			item_on_cursor = null
 			
-func _on_inventory_item_clicked(inventory_item):
+func _on_inventory_item_clicked(inventory_item, root_slot):
 	set_item_on_cursor(inventory_item.get_item())
+	inventory_node.remove_item(inventory_item)
 	inventory_item.queue_free()

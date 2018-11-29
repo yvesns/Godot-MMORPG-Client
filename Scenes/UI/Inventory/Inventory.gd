@@ -66,6 +66,7 @@ func insert_item(item, slot):
 				is_root_slot = false
 				
 			slots[slot.row + i][slot.column + j].set_item(item, is_root_slot)
+			inventory_item.add_slot(slots[slot.row + i][slot.column + j])
 	
 	find_node("InventoryItemContainer").add_child(inventory_item)
 	inventory_item.margin_left = slot.get_column() * Global.inventory_slot_size + (3.7 * (slot.get_column() + 1))
@@ -82,3 +83,7 @@ func handle_item_insertion(item):
 		return true
 		
 	return false
+	
+func remove_item(item):
+	for slot in item.get_slots():
+		slot.remove_item()
