@@ -40,16 +40,18 @@ func set_item_on_cursor(item):
 	item_scene.position = get_global_mouse_position()
 	item_scene.show()
 	
+func remove_item_on_cursor():
+	item_on_cursor.queue_free()
+	item_on_cursor = null
+	
 func _on_item_scene_clicked(item):
 	if (inventory_node != null &&
 		inventory_node.visible &&
 		inventory_node.is_item_over()):
 			
 		if inventory_node.handle_item_insertion(item):
-			item_on_cursor.queue_free()
-			item_on_cursor = null
+			remove_item_on_cursor()
 			
 func _on_inventory_item_clicked(inventory_item, root_slot):
 	set_item_on_cursor(inventory_item.get_item())
 	inventory_node.remove_item(inventory_item)
-	inventory_item.queue_free()

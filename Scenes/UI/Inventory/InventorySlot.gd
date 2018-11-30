@@ -31,6 +31,9 @@ func set_item(item, is_root):
 	self.is_root = is_root
 	has_item = true
 	
+func get_item():
+	return item
+	
 func get_row():
 	return row
 	

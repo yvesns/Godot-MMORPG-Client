@@ -23,6 +23,15 @@ func _ready():
 	
 	InputHandler.set_inventory_node(self)
 	
+	#Remove later
+	run_test()
+	
+func run_test():
+	var test_item = load(Global.paths["TestItem.gd"]).new()
+	test_item.init()
+	
+	insert_item(test_item, slots[0][0])
+	
 func is_item_over():
 	for i in range(row_count):
 		for j in range(row_size):
@@ -38,6 +47,25 @@ func get_hovering_item_top_left_slot():
 				return slots[i][j]
 				
 	return null
+	
+func get_overlapped_slots():
+	var overlapped_slots = []
+	
+	for i in range(row_count):
+		for j in range(row_size):
+			if slots[i][j].is_item_over:
+				overlapped_slots.append(slots[i][j])
+	
+	return overlapped_slots
+	
+func get_overlapped_items():
+	var overlapped_items = []
+	
+	for slot in get_overlapped_slots():
+		if !overlapped_items.has(slot.get_item()):
+			overlapped_items.append(slot.get_item())
+				
+	return overlapped_items
 	
 func has_enough_space(item, slot):
 	for i in range(item.inventory_slot_height):
@@ -72,18 +100,32 @@ func insert_item(item, slot):
 	inventory_item.margin_left = slot.get_column() * Global.inventory_slot_size + (3.7 * (slot.get_column() + 1))
 	inventory_item.margin_top = slot.get_row() * Global.inventory_slot_size + (3.7 * (slot.get_row() + 1))
 	
+func remove_item(item):
+	for slot in item.get_slots():
+		slot.remove_item()
+	
+	item.queue_free()
+		
+func swap_items(cursor_item_data, inventory_item):
+	InputHandler.remove_item_on_cursor()
+	InputHandler.set_item_on_cursor(inventory_item.get_item())
+	remove_item(inventory_item)
+	insert_item(cursor_item_data)
+	
 func handle_item_insertion(item):
 	var slot = get_hovering_item_top_left_slot()
+	var overlapped_items
 	
 	if slot == null:
 		return false
+		
+	overlapped_items = get_overlapped_items()
+		
+	if overlapped_items.size() == 1:
+		return swap_items(item, overlapped_items[0])
 		
 	if has_enough_space(item, slot):
 		insert_item(item, slot)
 		return true
 		
 	return false
-	
-func remove_item(item):
-	for slot in item.get_slots():
-		slot.remove_item()
