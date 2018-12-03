@@ -41,6 +41,9 @@ func set_item_on_cursor(item):
 	item_scene.show()
 	
 func remove_item_on_cursor():
+	if item_on_cursor == null:
+		return
+	
 	item_on_cursor.queue_free()
 	item_on_cursor = null
 	

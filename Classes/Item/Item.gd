@@ -22,3 +22,6 @@ func get_width():
 	
 func get_height():
 	return Global.inventory_slot_size * inventory_slot_height
+	
+func get_slot_count():
+	return inventory_slot_width * inventory_slot_height

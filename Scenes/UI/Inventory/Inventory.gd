@@ -62,7 +62,7 @@ func get_overlapped_items():
 	var overlapped_items = []
 	
 	for slot in get_overlapped_slots():
-		if !overlapped_items.has(slot.get_item()):
+		if slot.get_item() != null && !overlapped_items.has(slot.get_item()):
 			overlapped_items.append(slot.get_item())
 				
 	return overlapped_items
@@ -93,7 +93,7 @@ func insert_item(item, slot):
 			else:
 				is_root_slot = false
 				
-			slots[slot.row + i][slot.column + j].set_item(item, is_root_slot)
+			slots[slot.row + i][slot.column + j].set_item(inventory_item, is_root_slot)
 			inventory_item.add_slot(slots[slot.row + i][slot.column + j])
 	
 	find_node("InventoryItemContainer").add_child(inventory_item)
@@ -104,13 +104,17 @@ func remove_item(item):
 	for slot in item.get_slots():
 		slot.remove_item()
 	
+	item.set_destroyed()
 	item.queue_free()
 		
 func swap_items(cursor_item_data, inventory_item):
+	if get_overlapped_slots().size() < cursor_item_data.get_slot_count():
+		return false
+	
 	InputHandler.remove_item_on_cursor()
 	InputHandler.set_item_on_cursor(inventory_item.get_item())
 	remove_item(inventory_item)
-	insert_item(cursor_item_data)
+	handle_item_insertion(cursor_item_data)
 	
 func handle_item_insertion(item):
 	var slot = get_hovering_item_top_left_slot()

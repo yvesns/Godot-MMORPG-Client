@@ -3,6 +3,7 @@ extends TextureRect
 var item = null
 var root_slot = null
 var slots = []
+var destroyed = false
 
 func _ready():
 	pass
@@ -28,7 +29,8 @@ func _input(event):
 		
 	if event is InputEventMouseButton:
 		if (event.button_index == BUTTON_LEFT &&
-			!event.pressed && 
+			!event.pressed &&
+			!destroyed &&
 			Global.is_mouse_over(
 				get_rect().position, 
 				get_global_mouse_position(), 
@@ -41,3 +43,6 @@ func add_slot(slot):
 	
 func get_slots():
 	return slots
+	
+func set_destroyed():
+	destroyed = true
