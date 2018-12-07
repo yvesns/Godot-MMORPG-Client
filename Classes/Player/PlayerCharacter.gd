@@ -6,6 +6,7 @@ var respawn_map = ""
 var logout_map = ""
 var logout_x = 0
 var logout_y = 0
+var inventory = []
 
 # In pixels/second. Not getting it from the database yet.
 # Might be a good idea to calculate from the map tile size.
@@ -64,6 +65,13 @@ func get_movement_speed():
 	
 func set_movement_speed(speed):
 	movement_speed = speed
+	
+func has_item(item):
+	return inventory.has(item)
+	
+func add_item(item):
+	#Add validation here
+	inventory.append(item)
 	
 func serialize():
 	return {

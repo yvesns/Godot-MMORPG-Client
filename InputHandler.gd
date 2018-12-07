@@ -56,5 +56,8 @@ func _on_item_scene_clicked(item):
 			remove_item_on_cursor()
 			
 func _on_inventory_item_clicked(inventory_item, root_slot):
+	if item_on_cursor != null:
+		return
+	
 	set_item_on_cursor(inventory_item.get_item())
 	inventory_node.remove_item(inventory_item)

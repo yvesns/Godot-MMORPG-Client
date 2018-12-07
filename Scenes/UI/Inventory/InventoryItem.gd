@@ -44,5 +44,8 @@ func add_slot(slot):
 func get_slots():
 	return slots
 	
+func get_root_slot():
+	return root_slot
+	
 func set_destroyed():
 	destroyed = true
