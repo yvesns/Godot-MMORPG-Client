@@ -8,7 +8,7 @@ func _ready():
 	ItemScene = load(Global.paths["ItemScene.tscn"])
 	
 	#Remove later
-	run_test()
+	#run_test()
 	
 func run_test():
 	var test_item = load(Global.paths["TestItem.gd"]).new()

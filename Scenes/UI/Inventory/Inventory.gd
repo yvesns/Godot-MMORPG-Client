@@ -11,6 +11,7 @@ var InventoryItem
 var inventory = []
 
 func _ready():
+	var viewport_size = get_viewport().size
 	var slot_container = find_node("SlotGrid")
 	var slot_image_container = find_node("SlotImageGrid")
 	InventorySlot = load(Global.paths["InventorySlot.tscn"])
@@ -23,6 +24,8 @@ func _ready():
 			slots[i][j] = InventorySlot.instance()
 			slots[i][j].init(i, j)
 			slot_container.add_child(slots[i][j])
+			
+	set_position(Vector2(viewport_size.x/4, viewport_size.y/2))
 	
 	InputHandler.set_inventory_node(self)
 	
@@ -139,7 +142,6 @@ func swap_items(cursor_item_data, inventory_item):
 	InputHandler.remove_item_on_cursor()
 	InputHandler.set_item_on_cursor(inventory_item.get_item())
 	remove_item(inventory_item)
-	#handle_item_insertion(cursor_item_data)
 	insert_item(cursor_item_data, root_slot)
 	
 	return false

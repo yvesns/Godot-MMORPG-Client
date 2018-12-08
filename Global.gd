@@ -21,6 +21,7 @@ func _ready():
 	paths["InventorySlot.tscn"] = "res://Scenes/UI/Inventory/InventorySlot.tscn"
 	paths["InventoryItem.tscn"] = "res://Scenes/UI/Inventory/InventoryItem.tscn"
 	paths["ItemScene.tscn"] = "res://Scenes/Items/ItemScene.tscn"
+	paths["Inventory.tscn"] = "res://Scenes/UI/Inventory/Inventory.tscn"
 	
 	#Scripts
 	paths["PlayerCharacter.gd"] = "res://Classes/Player/PlayerCharacter.gd"

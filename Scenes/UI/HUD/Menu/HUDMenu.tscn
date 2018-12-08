@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/UI/HUD/Menu/HUDMenu.gd" type="Script" id=1]
 
-[node name="HUDMenu" type="VBoxContainer"]
+[node name="HUDMenu" type="VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -199,5 +199,7 @@ align = 1
 _sections_unfolded = [ "Rect", "Size Flags" ]
 
 [connection signal="button_up" from="HBoxContainer/Menu" to="." method="_on_Menu_button_up"]
+
+[connection signal="button_up" from="OptionsContainer/GridContainer/Inventory" to="." method="_on_Inventory_button_up"]
 
 
