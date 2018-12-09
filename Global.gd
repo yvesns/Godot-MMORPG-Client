@@ -3,8 +3,8 @@ extends Node
 var scene_args
 var paths = {}
 
-var player_node
-var player_data
+var player_node = null
+var player_data = null
 
 var inventory_slot_size = 50
 
@@ -87,3 +87,12 @@ func is_mouse_over(node_position, mouse_position, size):
 		mouse_position.y >= node_position.y &&
 		mouse_position.y <= max_y
 	)
+	
+func set_player_node(player_node):
+	self.player_node = player_node
+	
+func get_player_node():
+	return player_node
+	
+func get_player_data():
+	return player_node.get_character_info()

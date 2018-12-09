@@ -11,11 +11,7 @@ func _ready():
 	
 func init(character_info):
 	self.character_info = character_info
-	
-func _input(event):
-	if event is InputEventMouseButton:
-		move_to = event.position
-		moving = true
+	z_index += 1
 		
 func get_motion():
 	var x
@@ -42,6 +38,14 @@ func destination_reached():
 		abs(self.position.x - move_to.x) < position_tolerance && 
 		abs(self.position.y - move_to.y) < position_tolerance
 	)
+	
+func get_character_info():
+	return character_info
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		move_to = event.position
+		moving = true
 	
 func _physics_process(delta):
 	if !moving || move_to == null:

@@ -7,6 +7,8 @@ var slots = {}
 var InventorySlot
 var InventoryItem
 
+var click_pos = null
+
 #Just for debugging, remove later.
 var inventory = []
 
@@ -166,3 +168,17 @@ func handle_item_insertion(item):
 		return true
 	
 	return false
+
+func _on_CloseButton_button_up():
+	hide()
+
+func _on_TopBarContainer_gui_input(event):
+	if (event is InputEventMouseButton && 
+	    event.button_index == BUTTON_LEFT):
+		if event.pressed:
+			click_pos = get_global_mouse_position() - get_position()
+		else:
+			click_pos = null
+	elif (event is InputEventMouseMotion &&
+	      click_pos != null):
+		set_position(get_global_mouse_position() - click_pos)

@@ -23,7 +23,8 @@ func run_test():
 func _input(event):
 	if event is InputEventMouseMotion && item_on_cursor != null:
 		move_item_on_cursor()
-	
+		return
+		
 func move_item_on_cursor():
 	item_on_cursor.position = get_global_mouse_position()
 		

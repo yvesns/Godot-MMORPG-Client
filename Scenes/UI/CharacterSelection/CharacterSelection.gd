@@ -43,11 +43,15 @@ func _on_Cancel_button_up():
 
 func _on_character_connection_success(map, character_position):
 	var map_path = Global.paths[map + ".tscn"]
+	var player_node = load(Global.paths["Fighter.tscn"]).instance()
+	player_node.init()
+	player_node.hide()
+	
+	Global.set_player_node(player_node)
 	
 	Global.player_node = load(Global.paths["Fighter.tscn"]).instance()
 	Global.player_node.init(selected_character)
 	Global.player_node.hide()
-	Global.player_node.z_index += 1
 	Global.player_data = selected_character
 	
 	get_tree().change_scene(map_path)
@@ -55,6 +59,8 @@ func _on_character_connection_success(map, character_position):
 	
 	Global.player_node.position = Vector2(character_position.x, character_position.y)
 	Global.player_node.show()
+	
+	Global.is_map_loaded = true
 	
 func _on_character_connection_failure(message):
 	pass

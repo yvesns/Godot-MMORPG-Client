@@ -1,9 +1,22 @@
 extends VBoxContainer
 
-var inventory_scene = null
+var inventory_node = null
 
 func _ready():
 	pass
+	
+func create_inventory():
+	var control = Control.new()
+	inventory_node = load(Global.paths["Inventory.tscn"]).instance()
+	inventory_node.hide()
+	get_tree().get_root().add_child(control)
+	control.add_child(inventory_node)
+	
+func toggle_inventory():
+	if inventory_node.visible:
+		inventory_node.hide()
+	else:
+		inventory_node.show()
 
 func _on_Menu_button_up():
 	var menu_button = find_node("Menu")
@@ -17,11 +30,11 @@ func _on_Menu_button_up():
 		menu_button.text = "V Menu"
 
 func _on_Inventory_button_up():
-	if inventory_scene == null:
-		var control = Control.new()
-		inventory_scene = load(Global.paths["Inventory.tscn"]).instance()
-		inventory_scene.hide()
-		get_tree().get_root().add_child(control)
-		control.add_child(inventory_scene)
+	if inventory_node == null:
+		create_inventory()
 		
-	inventory_scene.show()
+	toggle_inventory()
+	
+func _input(event):
+	if Input.is_action_just_pressed("inventory"):
+		_on_Inventory_button_up()
