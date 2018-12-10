@@ -8,6 +8,8 @@ var player_data = null
 
 var inventory_slot_size = 50
 
+var is_map_loaded = false
+
 func _ready():
 	#Scenes
 	paths["LoginUI.tscn"] = "res://Scenes/UI/Login/LoginUI.tscn"
@@ -46,6 +48,15 @@ func get_file_path(file_name):
 	paths[file_name] = file_path
 	
 	return file_path
+	
+func set_player_node(player_node):
+	self.player_node = player_node
+	
+func get_player_node():
+	return player_node
+	
+func get_player_data():
+	return player_node.get_character_info()
 	
 func find_file(file_name):
 	var dir = Directory.new()
@@ -88,11 +99,13 @@ func is_mouse_over(node_position, mouse_position, size):
 		mouse_position.y <= max_y
 	)
 	
-func set_player_node(player_node):
-	self.player_node = player_node
+func load_map(map_path):
+	is_map_loaded = false
 	
-func get_player_node():
-	return player_node
+	get_tree().change_scene(map_path)
+	get_tree().get_root().add_child(player_node)
 	
-func get_player_data():
-	return player_node.get_character_info()
+	#Global.player_node.position = Vector2(character_position.x, character_position.y)
+	player_node.show()
+	
+	is_map_loaded = true
