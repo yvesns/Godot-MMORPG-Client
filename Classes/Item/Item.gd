@@ -77,3 +77,29 @@ func get_height():
 	
 func get_slot_count():
 	return inventory_slot_width * inventory_slot_height
+	
+func serialize():
+	return {
+		texture = self.texture,
+		state = self.state,
+		item_id = self.item_id,
+		item_name = self.item_name,
+		item_class = self.item_class,
+		item_type = self.item_type,
+		item_rarity = self.item_rarity,
+		item_options = JSON.print(self.item_options, "", true),
+		inventory_slot_width = self.inventory_slot_width,
+		inventory_slot_height = self.inventory_slot_height,
+	}
+	
+func deserialize(item):
+	texture = item.texture
+	state = item.state
+	item_id = item.item_id
+	item_name = item.item_name
+	item_class = item.item_class
+	item_type = item.item_type
+	item_rarity = item.item_rarity
+	item_options = JSON.parse(item.item_options).result
+	inventory_slot_width = item.inventory_slot_width
+	inventory_slot_height = item.inventory_slot_height
