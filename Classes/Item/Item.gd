@@ -14,6 +14,8 @@ var item_rarity
 var item_options
 var inventory_slot_width = 0
 var inventory_slot_height = 0
+var inventory_x
+var inventory_y
 
 func _ready():
 	pass
@@ -57,6 +59,12 @@ func get_rarity():
 func set_rarity(item_rarity):
 	self.item_rarity = item_rarity
 	
+func get_options():
+	return item_options
+
+func set_options(json_item_options):
+	item_options = JSON.parse(json_item_options).result
+	
 func get_inventory_width():
 	return inventory_slot_width
 	
@@ -68,6 +76,15 @@ func get_inventory_height():
 	
 func set_inventory_height(inventory_slot_height):
 	self.inventory_slot_height = inventory_slot_height
+	
+func get_inventory_x():
+	return inventory_x
+	
+func set_inventory_x(inventory_x):
+	self.inventory_x = inventory_x
+	
+func get_inventory_y():
+	return inventory_y
 	
 func get_width():
 	return Global.inventory_slot_size * inventory_slot_width
@@ -90,16 +107,18 @@ func serialize():
 		item_options = JSON.print(self.item_options, "", true),
 		inventory_slot_width = self.inventory_slot_width,
 		inventory_slot_height = self.inventory_slot_height,
+		inventory_X = self.inventory_x,
+		inventory_y = self.inventory_y
 	}
 	
 func deserialize(item):
-	texture = item.texture
-	state = item.state
-	item_id = item.item_id
-	item_name = item.item_name
-	item_class = item.item_class
-	item_type = item.item_type
-	item_rarity = item.item_rarity
-	item_options = JSON.parse(item.item_options).result
-	inventory_slot_width = item.inventory_slot_width
-	inventory_slot_height = item.inventory_slot_height
+	set_texture(item.texture)
+	set_tate(item.state)
+	set_id(item.item_id)
+	set_name(item.item_name)
+	set_class(item.item_class)
+	set_type(item.item_type)
+	set_rarity(item.item_rarity)
+	set_options(item.item_options)
+	set_inventory_width(item.inventory_slot_width)
+	set_inventory_height(item.inventory_slot_height)
