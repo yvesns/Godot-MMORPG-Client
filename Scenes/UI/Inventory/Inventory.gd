@@ -18,7 +18,7 @@ func _ready():
 	var slot_image_container = find_node("SlotImageGrid")
 	InventorySlot = load(Global.paths["InventorySlot.tscn"])
 	InventoryItem = load(Global.paths["InventoryItem.tscn"])
-		
+	
 	for i in range(row_count):
 		slots[i] = {}
 		

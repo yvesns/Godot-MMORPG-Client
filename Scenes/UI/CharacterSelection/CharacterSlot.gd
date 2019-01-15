@@ -16,8 +16,8 @@ func init(database_character):
 	#There seems to be a bug with HBoxContainers not taking into consideration
 	#the size of labels when calculating the size of each child.
 	find_node("Label").text = character.get_name()
-	find_node("TextureRect").texture = load(Global.paths["CharacterPlaceholder"])
-				
+	find_node("TextureRect").texture = load(Global.paths["CharacterPlaceholder.png"])
+	
 func connect_character_selected_signal(node, method_name):
 	connect("character_selected", node, method_name)
 	
