@@ -32,7 +32,7 @@ func _input(event):
 			!event.pressed &&
 			!destroyed &&
 			Global.is_mouse_over(
-				get_rect().position, 
+				get_global_position(),
 				get_global_mouse_position(), 
 				texture.get_size()
 			)):
